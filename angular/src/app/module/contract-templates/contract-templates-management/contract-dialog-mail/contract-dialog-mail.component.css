@@ -1,10 +1,10 @@
 .wapper_header {
-  height: 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  border-bottom: 1px solid #ded4d4;
+    height: 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #ded4d4;
 }
 
 /* .wapper_header h5 {
@@ -14,199 +14,296 @@
 } */
 
 .header-close h4 {
-  font-weight: 700;
-  font-size: 20px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .wapper_header i {
-  font-size: 30px;
+    font-size: 30px;
 }
 
-.wapper_header i:hover {
-  color: red;
-}
+    .wapper_header i:hover {
+        color: red;
+    }
 
 ::ng-deep .mail_dialog .mat-dialog-container {
-  padding: 0;
+    padding: 0;
 }
 
 :host ::ng-deep .header {
-  display: none !important;
+    display: none !important;
 }
 
 :host ::ng-deep .contract {
-  background-color: rgb(233, 233, 233) !important;
+    background-color: rgb(233, 233, 233) !important;
 }
 
 :host ::ng-deep .wrapper_contract {
-  height: 100% !important;
+    height: 100% !important;
 }
 
 .button_send--mail {
-  width: 60px;
-  height: 35px;
-  background-color: var(--primary-color);
-  border-radius: 5px;
-  border: none;
-  font-weight: 400;
-  color: white;
+    width: 60px;
+    height: 35px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: none;
+    font-weight: 400;
+    color: white;
 }
 
 .wapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 .wapper_send--mail {
-  display: flex;
-  width: 100%;
-  height: 84%;
+    display: flex;
+    width: 100%;
+    height: 84%;
 }
 
 .send_mail--signer {
-  width: 70%;
-  height: 100%;
-  padding: 10px;
-  overflow: auto;
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    overflow: auto;
 }
 
-.send_mail--signer h4 {
-  margin-top: 5px;
-  font-size: 18px;
-  margin-left: 10px;
-}
+    .send_mail--signer h4 {
+        margin-top: 5px;
+        font-size: 18px;
+        margin-left: 10px;
+    }
 
-.send_mail--signer h5 {
-  padding: 0;
-  margin: 0;
-  font-size: 20px;
-}
+    .send_mail--signer h5 {
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+    }
 
 .send_mail--contract {
-  width: 30%;
+    width: 30%;
 }
 
 .send_mail--btn {
-  border-top: 1px solid #ded4d4;
-  height: 8%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 10px;
+    border-top: 1px solid #ded4d4;
+    height: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
 }
 
 .signer_table {
-  width: 70%;
-  margin: 30px auto;
+    width: 70%;
+    margin: 30px auto;
 }
 
 .send_mail--contract h4 {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 
 
 .contract_signer {
-  width: 90%;
-  margin: 10px auto 0 auto;
+    width: 90%;
+    margin: 10px auto 0 auto;
 }
 
 .signer_form--list {
-  border-left: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
-  border-right: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
 }
 
 .signer_form--name {
-  font-size: 16px;
-  padding: 5px;
-  background-color: rgb(240, 238, 237);
-  border-top: 5px solid #dbd9d9;
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(240, 238, 237);
+    border-top: 5px solid #dbd9d9;
 }
 
 .contract_signer--form p {
-  margin: 0;
-  padding: 0;
-  margin-top: 20px;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
 }
 
 .form_group--input {
-  display: flex;
-  gap: 0 30px;
-  padding: 10px;
+    display: flex;
+    gap: 0 30px;
+    padding: 10px;
 }
 
 .loadding_page {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 ::ng-deep .mat-progress-spinner circle,
 .mat-spinner circle {
-  stroke: var(--primary-color);
+    stroke: var(--primary-color);
 }
 
 :host ::ng-deep #design_viewer {
-  transform: scale(0.3) !important;
-  transform-origin: top center;
+    transform: scale(0.3) !important;
+    transform-origin: top center;
 }
 
 @media (max-width: 1585px) {
-  :host ::ng-deep #design_viewer {
-    transform: scale(0.2) !important;
-    transform-origin: top center;
-  }
+    :host ::ng-deep #design_viewer {
+        transform: scale(0.2) !important;
+        transform-origin: top center;
+    }
 }
 
 .signer-item {
-  border-left: 10px solid;
-  transform: translateX(10px);
+    border-left: 10px solid;
+    transform: translateX(10px);
 }
 
 .signer_form--order {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  transform: translate(30%, 80%);
-  font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transform: translate(30%, 80%);
+    font-size: 18px;
 }
 
 .contract_signer--box {
-  margin-top: 10px;
-  /* padding: 10px; */
-  background-color: rgb(244, 244, 244);
+    margin-top: 10px;
+    /* padding: 10px; */
+    background-color: rgb(244, 244, 244);
 }
 
 .email_contract--Send {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .email_contract--signer {
-  margin-top: 20px;
+    margin-top: 20px;
 }
+
 .contract_name {
-  font-size: 18px;
+    font-size: 18px;
 }
+
 .email_contract--view {
-  margin-top: 20px;
+    margin-top: 20px;
 }
+
 .contract_view--box {
-  padding: 10px 10px 10px 20px;
-  background-color: rgb(244, 244, 244);
+    padding: 10px 10px 10px 20px;
+    background-color: rgb(244, 244, 244);
 }
 
 .download_contract--excel {
-  padding: 3px;
-  border-left: 5px solid;
-  margin-bottom: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
+    padding: 3px;
+    border-left: 5px solid;
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+
+/* ==========================================================================
+   RESPONSIVE TABLET & IPAD PRO (<= 1024px)
+   Cột signer (70%) + preview hợp đồng (30%) đang nằm ngang quá hẹp trên
+   tablet -> chuyển sang xếp chồng, phần signer trên, preview dưới, mỗi
+   phần tự cuộn riêng thay vì bị bóp chữ / bóp preview đến không đọc được.
+   ========================================================================== */
+@media only screen and (max-width: 1024px) {
+    .wapper_send--mail {
+        flex-direction: column;
+        height: auto;
+        max-height: 84%;
+        overflow-y: auto;
+    }
+
+    .send_mail--signer {
+        width: 100%;
+        height: auto;
+        max-height: 55vh;
+    }
+
+    .send_mail--contract {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Preview hợp đồng: phóng to lại vì giờ chiếm full-width thay vì 30% */
+    :host ::ng-deep #design_viewer {
+        transform: scale(0.45) !important;
+        transform-origin: top center;
+    }
+
+    /* Khu vực chọn file + ghi chú: xếp dọc thay vì 2 cột 50/50 quá hẹp */
+    .email_contract--Send .row {
+        flex-direction: column;
+    }
+
+    .email_contract--Send .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+        .email_contract--Send .col-6:last-child {
+            margin-top: 12px;
+        }
+
+    /* Dòng signer: role + badge dễ tràn ở cột hẹp, cho xuống dòng có kiểm soát */
+    .contract_signer--box .row {
+        flex-wrap: wrap;
+    }
+
+    .signer-item.col-8 {
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+
+    .col-3 {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+}
+
+/* iPad dọc hẹp hơn (<= 834px) */
+@media only screen and (max-width: 834px) {
+    .wapper_header h4 {
+        font-size: 1.05rem;
+    }
+
+    .send_mail--signer h5,
+    .send_mail--contract h4 {
+        font-size: 1rem;
+    }
+
+    :host ::ng-deep #design_viewer {
+        transform: scale(0.35) !important;
+        transform-origin: top center;
+    }
+
+    .signer-item.col-8 {
+        flex: 0 0 60%;
+        max-width: 60%;
+    }
+
+    .col-3 {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+
+    .contract_view--box,
+    .contract_signer--box {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }

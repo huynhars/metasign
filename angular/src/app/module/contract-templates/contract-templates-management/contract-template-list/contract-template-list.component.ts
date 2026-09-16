@@ -50,6 +50,7 @@ export class ContractTemplateListComponent
    
     {
       id: 2,
+      width: 125,
       name: EDisplayedColumnContract.Name,
       status: EChangeSortContractTemplate.Default,
       isCheckedSort: true,

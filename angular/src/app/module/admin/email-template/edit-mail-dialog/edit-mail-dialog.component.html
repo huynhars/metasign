@@ -68,20 +68,12 @@
                 <div class="col-12">
                   <editor
                     class="w-100"
-                    [init]="{
-                      height: 580,
-                      class: 'w-100',
-                      menubar: true,
-                      plugins: [
-                        'table',
-                        'code',
-                        'preview',
-                        'media',
-                        'image',
-                        'template'
-                      ],
-                      toolbars: ['image']
-                    }"
+                   [init]="{
+  height: 580,
+  menubar: true,
+  plugins: ['table', 'code', 'preview', 'media', 'image', 'template'],
+  content_style: 'a { white-space: nowrap; }'
+}"
                     [(ngModel)]="mailInfo.bodyMessage"
                   >
                   </editor>

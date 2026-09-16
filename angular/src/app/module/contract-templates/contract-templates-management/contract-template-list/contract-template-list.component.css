@@ -1,78 +1,159 @@
 :host ::ng-deep .mat-menu-content {
-  width: 300px !important;
-  max-height: 50vh;
+    width: 300px !important;
+    max-height: 50vh;
 }
+
 .header_content {
-  height: 60px;
+    height: 60px;
 }
 
 ::ng-deep #change-page .page-item.active .page-link {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
 }
 
 #btn_action i {
-  font-size: 23px !important;
+    font-size: 23px !important;
 }
 
 .head_icon {
-  margin-left: 10px;
-  cursor: pointer;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
 }
 
-.head_icon:hover {
-  color: #3f51b5;
-}
-.head-table {
-  height: 60px;
-}
+    .head_icon:hover {
+        color: #3f51b5;
+    }
 
 .footer {
-  border: 1px solid #dee2e6;
+    border: 1px solid #dee2e6;
 }
 
 .btn-refresh {
-  background-color: var(--primary-color);
-}
-
-.btn-actions-item i {
-  padding-right: 4px;
-}
-
-.btn_delete i {
-  margin-left: 3px;
-}
-
-.btn_delete span {
-  margin-left: -3px;
-}
-
-.color-select {
-  background-color: #dedfe0;
+    background-color: var(--primary-color);
 }
 
 .text-color-title {
-  color: #2f3136 !important;
-}
-
-.text-not-data {
-  color: #949494;
-  font-style: italic;
-  padding: 24px 0 10px;
-}
-
-.text-not-data span {
-  font-size: 1.05rem !important;
+    color: #2f3136 !important;
 }
 
 .text-color {
-  color: #43464f !important;
+    color: #43464f !important;
 }
 
-.contract-name {
-  font-size: 16px !important;
+/* =========================================================
+   ÉP BẢNG HÀNG NGANG & KHÔNG BAO GIỜ BỊ DỰNG ĐỨNG CHỮ
+   ========================================================= */
+
+#table_wapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
 }
 
-/* .messTable {
-  height: 560px;
-} */
+.table_header {
+    width: 100% !important;
+    min-width: 850px !important; /* Đảm bảo đủ độ rộng màn hình nhỏ */
+    table-layout: fixed !important;
+    border-collapse: collapse;
+}
+
+    /* Ép thẻ TH hiển thị dạng ô bảng tiêu chuẩn */
+    .table_header thead th {
+        display: table-cell !important;
+        vertical-align: middle !alignment;
+        padding: 12px 8px !important;
+        white-space: nowrap !important;
+        background-color: #f8f9fa;
+    }
+
+/* Div chứa chữ và icon sắp xếp nằm ngang */
+.head-table-item {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    white-space: nowrap !important;
+    width: 100%;
+}
+
+/* Ô dữ liệu tbody */
+.table_header tbody td {
+    display: table-cell !important;
+    vertical-align: middle !important;
+    padding: 10px 8px !important;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Chia tỉ lệ cột đồng bộ 100% giữa tiêu đề và dữ liệu */
+.table_header th:nth-child(1), .table_header td:nth-child(1) {
+    width: 6% !important;
+}
+
+.table_header th:nth-child(2), .table_header td:nth-child(2) {
+    width: 28% !important;
+}
+
+.table_header th:nth-child(3), .table_header td:nth-child(3) {
+    width: 20% !important;
+}
+
+.table_header th:nth-child(4), .table_header td:nth-child(4) {
+    width: 20% !important;
+}
+
+.table_header th:nth-child(5), .table_header td:nth-child(5) {
+    width: 20% !important;
+}
+
+.table_header th:nth-child(6), .table_header td:nth-child(6) {
+    width: 6% !important;
+}
+
+/* Responsive Mobile/Tablet */
+@media only screen and (max-width: 1024px) {
+    .header_content {
+        height: auto;
+        padding-bottom: 8px;
+    }
+
+        .header_content .row {
+            flex-direction: column;
+        }
+
+        .header_content .col-md-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+    .search-contract {
+        width: 100% !important;
+        float: none !important;
+        margin-top: 8px;
+    }
+
+    .table_header thead th,
+    .table_header tbody td {
+        font-size: 0.88rem;
+        padding: 8px 6px !important;
+    }
+}
+
+:host ::ng-deep .mat-menu-content {
+    width: 220px !important; 
+    max-height: 50vh;
+}
+
+@media only screen and (max-width: 1024px) {
+    :host ::ng-deep .mat-menu-content {
+        width: 200px !important;
+    }
+
+    :host ::ng-deep .mat-menu-panel {
+        max-width: 200px !important;
+    }
+}

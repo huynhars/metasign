@@ -1,57 +1,113 @@
-<nav class="mt-2">
-  <ul class="list-menu">
-    <ng-container *ngFor="let item of menuItems">
-      <li class="nav-item d-inline-block" *ngIf="isMenuItemVisible(item)">
-        <a
-          *ngIf="item.route && item.route.indexOf('http') != 0"
-          class="nav-link d-inline-block"
-          [routerLink]="item?.route"
-          [routerLinkActive]="['active']"
-          [class.active]="item?.isActive"
-        >
-          <p class="m-1 menu-item">
-            {{ item?.label }}
-          </p>
-        </a>
+<nav class="mt-2 navbar-container">
+   
+    <div class="mobile-toggle-btn">
+        <button mat-icon-button (click)="isSidebarOpen = true" class="btn-hamburger" aria-label="Toggle Menu">
+            <i class="fas fa-bars icon-hamburger"></i>
+        </button>
+    </div>
 
-        <a
-          *ngIf="!item.route && item.children"
-          class="nav-link d-inline-block"
-          href="javascript:;"
-          [routerLinkActive]="['active']"
-          [class.active]="item.isActive"
-          (click)="item.isCollapsed = !item.isCollapsed"
-          [matMenuTriggerFor]="menuAdmin"
-        >
-          <p class="m-1 menu-item">
-            {{ item.label }}
-            <i class="fas fa-chevron-down icon-down"></i>
-          </p>
-        </a>
-        <mat-menu #menuAdmin="matMenu" class="admin-dropdown">
-          <ul class="menu-admin">
-            <ng-container *ngFor="let itemAdmin of item.children">
-              <li class="nav-item" *ngIf="isMenuItemVisible(itemAdmin)">
-                <a
-                  *ngIf="
-                    itemAdmin.route && itemAdmin.route.indexOf('http') != 0
-                  "
-                  class="nav-link {{
-                    itemAdmin.isActive && 'active-admin'
-                  }} nav-link-admin"
-                  [routerLink]="itemAdmin.route"
-                  [routerLinkActive]="['active']"
-                  [class.active]="itemAdmin.isActive"
-                >
-                  <p class="m-1 menu-item">
-                    {{ itemAdmin.label }}
-                  </p>
+    <ul class="list-menu">
+        <ng-container *ngFor="let item of menuItems">
+            <li class="nav-item d-inline-block" *ngIf="isMenuItemVisible(item)">
+                <a *ngIf="item.route && item.route.indexOf('http') != 0"
+                   class="nav-link d-inline-block"
+                   [routerLink]="item?.route"
+                   [routerLinkActive]="['active']"
+                   [class.active]="item?.isActive">
+                    <p class="m-1 menu-item">
+                        {{ item?.label }}
+                    </p>
                 </a>
-              </li>
-            </ng-container>
-          </ul>
-        </mat-menu>
-      </li>
-    </ng-container>
-  </ul>
+
+                <a *ngIf="!item.route && item.children"
+                   class="nav-link d-inline-block"
+                   href="javascript:;"
+                   [routerLinkActive]="['active']"
+                   [class.active]="item.isActive"
+                   (click)="item.isCollapsed = !item.isCollapsed"
+                   [matMenuTriggerFor]="menuAdmin">
+                    <p class="m-1 menu-item">
+                        {{ item.label }}
+                        <i class="fas fa-chevron-down icon-down"></i>
+                    </p>
+                </a>
+
+                <mat-menu #menuAdmin="matMenu" class="admin-dropdown">
+                    <ul class="menu-admin">
+                        <ng-container *ngFor="let itemAdmin of item.children">
+                            <li class="nav-item" *ngIf="isMenuItemVisible(itemAdmin)">
+                                <a *ngIf="itemAdmin.route && itemAdmin.route.indexOf('http') != 0"
+                                   class="nav-link {{ itemAdmin.isActive && 'active-admin' }} nav-link-admin"
+                                   [routerLink]="itemAdmin.route"
+                                   [routerLinkActive]="['active']"
+                                   [class.active]="itemAdmin.isActive">
+                                    <p class="m-1 menu-item">
+                                        {{ itemAdmin.label }}
+                                    </p>
+                                </a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </mat-menu>
+            </li>
+        </ng-container>
+    </ul>
 </nav>
+
+<div class="sidebar-overlay"
+     [class.active]="isSidebarOpen"
+     (click)="isSidebarOpen = false">
+</div>
+<aside class="sidebar-drawer" [class.open]="isSidebarOpen">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <sidebar-logo (click)="isSidebarOpen = false"></sidebar-logo>
+        </div>
+        <button class="btn-close-sidebar" (click)="isSidebarOpen = false" aria-label="Close Menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-body">
+        <ul class="sidebar-menu">
+            <ng-container *ngFor="let item of menuItems">
+                <li class="sidebar-item" *ngIf="isMenuItemVisible(item)">
+                    <a *ngIf="item.route && item.route.indexOf('http') != 0"
+                       class="sidebar-link"
+                       [routerLink]="item?.route"
+                       [routerLinkActive]="['active-sidebar']"
+                       (click)="isSidebarOpen = false">
+                        <span class="d-flex align-items-center">
+                            {{ item?.label }}
+                        </span>
+                    </a>
+
+                    <div *ngIf="!item.route && item.children">
+                        <div class="sidebar-link sidebar-parent"
+                             (click)="item.isCollapsed = !item.isCollapsed">
+                            <span class="d-flex align-items-center">
+                                {{ item.label }}
+                            </span>
+                            <i class="fas fa-chevron-down sidebar-icon-arrow"
+                               [class.rotated]="item.isCollapsed"></i>
+                        </div>
+
+                        <ul class="sidebar-submenu" [class.expanded]="item.isCollapsed">
+                            <ng-container *ngFor="let itemAdmin of item.children">
+                                <li *ngIf="isMenuItemVisible(itemAdmin)">
+                                    <a *ngIf="itemAdmin.route && itemAdmin.route.indexOf('http') != 0"
+                                       class="sidebar-sublink"
+                                       [routerLink]="itemAdmin.route"
+                                       [routerLinkActive]="['active-sidebar']"
+                                       (click)="isSidebarOpen = false">
+                                        {{ itemAdmin.label }}
+                                    </a>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+    </div>
+</aside>

@@ -1,23 +1,104 @@
+.wrapper {
+    padding: 0;
+    border: none; 
+}
+
 .content {
-  width: 95%;
-  margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 2px 16px; 
+    box-sizing: border-box;
 }
 
-.logo {
-  padding-left: 0;
-  padding-right: 0;
+.sidebar {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    height: 100%;
 }
 
+.topbar-logo {
+    display: none;
+}
+
+sidebar-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Triệt tiêu margin/padding mặc định gây lệch icon */
+::ng-deep sidebar-menu .mobile-toggle-btn,
+::ng-deep sidebar-menu .btn-hamburger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+    line-height: 1 !important;
+}
+
+::ng-deep sidebar-menu .icon-hamburger {
+    display: block;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+/* ===== ITEM HEADER RIGHT & XÓA GẠCH DỌC XÁM ===== */
 .item-header-right {
-  list-style: none;
-  padding: 20px 0 20px 20px;
-}
-
-sidebar-logo {
-  padding-left: 0;
-  padding-right: 0;
+    list-style: none;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    border-left: none !important; /* Xóa vạch xám nếu thuộc tính này tạo nên */
 }
 
 header-user-menu {
-  padding-left: 4px !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    border-left: none !important; /* Xóa vạch xám nếu do border-left của header-user-menu */
+}
+
+/* Xóa vạch dọc xám (|) ẩn trong pseudo-element hoặc class con của user menu */
+::ng-deep header-user-menu::before,
+::ng-deep header-user-menu::after,
+::ng-deep .item-header-right::before,
+::ng-deep .item-header-right::after,
+::ng-deep header-user-menu * {
+    border-left: none !important;
+    border-right: none !important;
+    box-shadow: none !important;
+}
+
+/* ===== RESPONSIVE TABLET & MOBILE ===== */
+@media only screen and (max-width: 1024px) {
+    .content {
+        padding: 0 16px; /* Giữ pad 16px cho đều đẹp cả 2 bên trên tablet/mobile */
+    }
+
+    .item-header-right {
+        padding: 8px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .content {
+        padding: 0 12px;
+    }
+}
+
+
+@media only screen and (min-width: 1367px) {
+    .topbar-logo {
+        display: flex !important;
+    }
 }

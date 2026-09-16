@@ -1,45 +1,51 @@
 <ng-container *ngIf="mailInfo">
     <abp-modal-header *ngIf="showDialogHeader" [title]="title" (onCloseClick)="dialogRef.close()"></abp-modal-header>
+
     <div class="p-3 background-card">
         <div class="row">
-            <div class="col-6">
+            <!-- Tối ưu grid responsive: 100% trên Mobile/Tablet, 66% trên Desktop -->
+            <div class="col-12 col-md-10 col-lg-8">
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">
-                        {{'To' | ecTranslate}}: 
+                    <label class="col-12 col-sm-3 col-form-label">
+                        {{'To' | ecTranslate}}:
                     </label>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <input class="form-control" #emailAdress="ngModel" #emailEl [(ngModel)]="mailInfo.sendToEmail"
-                            required placeholder="Email Address">
+                               required placeholder="Email Address">
                         <abp-validation-summary [control]="emailAdress" [controlEl]="emailEl"></abp-validation-summary>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">
+                    <label class="col-12 col-sm-3 col-form-label">
                         {{'Subject' | ecTranslate}}:
                     </label>
-                    <div class="col-9">
+                    <div class="col-12 col-sm-9">
                         <input class="form-control" [(ngModel)]="mailInfo.subject" required placeholder="Subject">
                     </div>
                 </div>
             </div>
         </div>
-        <div class=" email-content bg-white">
+
+        <!-- Khung xem trước nội dung Email -->
+        <div class="email-content bg-white p-3">
             <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(mailInfo.bodyMessage)">
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-action mr-2" [disabled]="cancelDisabled"
-            (click)="dialogRef.close()">
+
+    <!-- Footer buttons với flex-wrap để chống vỡ nút trên màn hình nhỏ -->
+    <div class="modal-footer flex-wrap">
+        <button type="button" class="btn btn-secondary btn-action mr-2 mb-1" [disabled]="cancelDisabled"
+                (click)="dialogRef.close()">
             {{'Close' | ecTranslate}}
         </button>
-        <button  (click)="editTemplate()" type="button"
-            class="btn btn-primary btn-action" [disabled]="saveDisabled">
+        <button (click)="editTemplate()" type="button" class="btn btn-primary btn-action mr-2 mb-1"
+                [disabled]="saveDisabled">
             {{'Edit' | ecTranslate}}
         </button>
-        <button  type="submit" class="btn btn-primary btn-action" (click)="sendMail()"
-            [disabled]="saveDisabled">
-            {{showEditButton ? ('SendMail'| ecTranslate) :('TestSendMail' | ecTranslate) }}
+        <button type="submit" class="btn btn-primary btn-action mb-1" (click)="sendMail()"
+                [disabled]="saveDisabled">
+            {{showEditButton ? ('SendMail'| ecTranslate) : ('TestSendMail' | ecTranslate) }}
         </button>
     </div>
 </ng-container>

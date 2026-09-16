@@ -5,3 +5,13 @@
     outline: none;
   }
 
+/* Ép tất cả tiêu đề bảng nằm trên 1 hàng duy nhất */
+.table thead th {
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+}
+
+/* Giữ nút bấm ở cột Action không bị vỡ dòng */
+.table td .w-max-content {
+    white-space: nowrap !important;
+}

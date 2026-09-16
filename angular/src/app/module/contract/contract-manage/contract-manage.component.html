@@ -43,41 +43,60 @@
             }}</span>
 
           <div class="d-flex w-50 align-items-center justify-content-end">
-            <div *ngIf="!listQuickFilterId.includes(currentFilter)" class="filter_select">
-              <mat-form-field appearance="outline" class="filter-contract mr-1" id="filter">
-                <mat-label>{{ "Signer" | ecTranslate }}</mat-label>
-                <mat-select [placeholder]="'Signer' | ecTranslate" disableOptionCentering [(ngModel)]="filterSigner"
-                  (selectionChange)="getDataPage(1)">
-                  <mat-form-field appearance="outline" floatLabel="never" class="w-100 px-3" style="
-                      position: sticky;
-                      top: 0;
-                      z-index: 2;
-                      background-color: white;
-                    ">
-                    <input id="searchSigner" matInput [formControl]="searchSinger" name="searchSigner"
-                      [placeholder]="'Search' | ecTranslate" (keydown)="$event.stopPropagation()" />
+              <div *ngIf="!listQuickFilterId.includes(currentFilter)" class="filter_select">
+                  <mat-form-field appearance="outline" class="filter-contract" id="filter">
+                      <mat-label>{{ "Signer" | ecTranslate }}</mat-label>
+
+                      <mat-select [placeholder]="'Signer' | ecTranslate"
+                                  disableOptionCentering
+                                  [(ngModel)]="filterSigner"
+                                  (selectionChange)="getDataPage(1)">
+
+                          <!-- Sticky Search Bar bên trong dropdown -->
+                          <mat-form-field appearance="outline" floatLabel="never" class="w-100 px-3 search-option-field">
+                              <input id="searchSigner"
+                                     matInput
+                                     [formControl]="searchSinger"
+                                     name="searchSigner"
+                                     [placeholder]="'Search' | ecTranslate"
+                                     (keydown)="$event.stopPropagation()" />
+                          </mat-form-field>
+
+                          <!-- Option chọn "Tất cả" chính thức -->
+                          <mat-option value="All" [ngClass]="{ active: filterSigner === 'All' }">
+                              {{ "All" | ecTranslate }}
+                          </mat-option>
+
+                          <!-- Option "Dành cho tôi" -->
+                          <mat-option *ngIf="($filterSigner | async)?.length !== 0"
+                                      [value]="'Me'"
+                                      [ngClass]="{ active: filterSigner === 'Me' }">
+                              @{{ "me" | ecTranslate }}
+                          </mat-option>
+
+                          <!-- Danh sách Người ký -->
+                          <mat-option *ngFor="let signer of $filterSigner | async"
+                                      [value]="signer.email"
+                                      [ngClass]="{ active: filterSigner === signer.email }">
+                              {{ signer.email }}
+                          </mat-option>
+
+                          <!-- Thông báo khi không có dữ liệu -->
+                          <mat-option disabled *ngIf="($filterSigner | async)?.length === 0">
+                              {{ messTable | ecTranslate }}
+                          </mat-option>
+                      </mat-select>
                   </mat-form-field>
-                  <mat-option hidden [value]="filterSigner">
-                    {{ filterSigner | ecTranslate }}
-                  </mat-option>
-                  <mat-option hidden [value]="'All' | ecTranslate">{{
-                    "All" | ecTranslate
-                    }}</mat-option>
-                  <mat-option [ngClass]="{ active: filterSigner === 'Me' }"
-                    *ngIf="($filterSigner | async)?.length !== 0" [value]="'Me'">@{{ "me" | ecTranslate }}</mat-option>
-                  <mat-option [ngClass]="{ active: filterSigner === signer.email }"
-                    *ngFor="let signer of $filterSigner | async" [value]="signer.email">
-                    {{ signer.email }}
-                  </mat-option>
-                  <mat-option disabled *ngIf="($filterSigner | async)?.length === 0">
-                    {{ messTable | ecTranslate }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div *ngIf="filterSigner !== 'All'" (click)="handleResetOption()" class="reset_signer">
-                <i class="fa-solid fa-xmark"></i>
+
+                  <!-- Nút X xóa lựa chọn -->
+                  <button type="button"
+                          *ngIf="filterSigner && filterSigner !== 'All'"
+                          (click)="handleResetOption()"
+                          class="reset_signer"
+                          aria-label="Clear filter">
+                      <i class="fa-solid fa-xmark"></i>
+                  </button>
               </div>
-            </div>
 
             <mat-form-field id="search" class="search-contract float-right" appearance="outline">
               <span matPrefix>
@@ -88,32 +107,33 @@
           </div>
         </div>
       </header>
-      <table class="table table-header">
-        <thead class="head-table bg-light">
-          <tr>
-            <th class="head-table-item text-color-title" [style.width.%]="columnItem.width"
-              *ngFor="let columnItem of displayedColumns">
-              {{ columnItem.name | ecTranslate }}
-              <ng-container [ngSwitch]="columnItem.statusSort" *ngIf="columnItem.isCheckedSort">
-                <span [class.checked-sort-item]="columnItem.isCheckedSort" (click)="
-                    handleChangeSortContract(
-                      columnItem.name,
-                      columnItem.isCheckedSort
-                    )
-                  ">
-                  <i *ngSwitchCase="checkedNumberSort.Default" class="fas fa-sort"></i>
-                  <i *ngSwitchCase="checkedNumberSort.Up" class="fas fa-sort-amount-up"></i>
-                  <i *ngSwitchCase="checkedNumberSort.Down" class="fas fa-sort-amount-down"></i>
-                </span>
-              </ng-container>
-            </th>
-            <th class="text-color-title" style="width: 7.5%"></th>
-          </tr>
-        </thead>
-      </table>
-      <div class="body-content">
-        <table class="table" [busy]="isTableLoading">
-          <tbody>
+      <div class="table-scroll">
+        <table class="table table-header">
+          <thead class="head-table bg-light">
+            <tr>
+              <th class="head-table-item text-color-title" [style.width.%]="columnItem.width"
+                *ngFor="let columnItem of displayedColumns">
+                {{ columnItem.name | ecTranslate }}
+                <ng-container [ngSwitch]="columnItem.statusSort" *ngIf="columnItem.isCheckedSort">
+                  <span [class.checked-sort-item]="columnItem.isCheckedSort" (click)="
+                      handleChangeSortContract(
+                        columnItem.name,
+                        columnItem.isCheckedSort
+                      )
+                    ">
+                    <i *ngSwitchCase="checkedNumberSort.Default" class="fas fa-sort"></i>
+                    <i *ngSwitchCase="checkedNumberSort.Up" class="fas fa-sort-amount-up"></i>
+                    <i *ngSwitchCase="checkedNumberSort.Down" class="fas fa-sort-amount-down"></i>
+                  </span>
+                </ng-container>
+              </th>
+              <th class="text-color-title" style="width: 7.5%"></th>
+            </tr>
+          </thead>
+        </table>
+        <div class="body-content">
+          <table class="table" [busy]="isTableLoading">
+            <tbody>
             <tr *ngIf="!listContract.length && !isTableLoading" class="w-100">
               <td colspan="7" class="text-not-data text-center">
                 <span style="transform: translateY(5px)">
@@ -236,8 +256,9 @@
                 </mat-menu>
               </td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
       <footer class="footer card-footer table-card-footer bg-light border-top">
         <div class="row">

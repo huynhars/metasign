@@ -191,3 +191,124 @@
   }
 
 }
+
+/* ==========================================================================
+   RESPONSIVE TABLET & IPAD PRO (<= 1024px)
+   Cột "Mail content" (gray box) và cột "Contract" xếp chồng dọc — đảm bảo
+   tiêu đề "Contract" tách bạch rõ ràng, không bị dính/đè vào khung xám.
+   ========================================================================== */
+@media only screen and (max-width: 1024px) {
+    .setting_email {
+        flex-direction: column;
+    }
+
+    .setting_email .row.col-12,
+    .setting_email > .col-12 {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    /* Bỏ h-100 khi 2 cột không còn nằm ngang -> khung xám không bị kéo
+       giãn lố, chỉ cao đúng bằng nội dung email thật sự */
+    .wrapper-mail-content {
+        height: auto !important;
+        padding: 20px !important;
+    }
+
+    /* Khoảng cách rõ ràng, tách "Contract" ra khỏi khung xám phía trên */
+    .col-12.col-lg-5 {
+        margin-top: 24px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .email_contract--title {
+        margin-top: 0;
+        padding-top: 4px;
+    }
+
+    .email_contract--file {
+        padding-bottom: 8px;
+    }
+
+    /* Email preview co gọn theo màn hình, tránh tràn ngang trên tablet */
+    ::ng-deep #mail-content div h3 {
+        font-size: 18px !important;
+    }
+
+    ::ng-deep #mail-content td h1 {
+        font-size: 20px !important;
+    }
+
+    ::ng-deep #mail-content td img {
+        width: 120px;
+        margin-top: 30px !important;
+    }
+
+    ::ng-deep #mail-content td a {
+        font-size: 8px !important;
+        padding: 12px 6px !important;
+    }
+
+    /* Danh sách người ký: badge không bị lệch/tràn trên cột hẹp hơn */
+    .signer-item.col-8 {
+        flex: 0 0 65%;
+        max-width: 65%;
+    }
+
+    .col-4.col-sm-3 {
+        flex: 0 0 35%;
+        max-width: 35%;
+        font-size: 14px !important;
+    }
+
+    .badge {
+        transform: translateY(8px) !important;
+    }
+
+    /* Nút Back/Send ở footer không bị tràn viền trên tablet */
+    .btn_step {
+        padding: 0 16px;
+        height: auto;
+        min-height: 50px;
+        flex-wrap: wrap;
+    }
+}
+
+/* iPad dọc hẹp hơn (<= 834px) */
+@media only screen and (max-width: 834px) {
+    .setting_email {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .wrapper-mail-content {
+        padding: 12px !important;
+    }
+
+    .col-12.col-lg-5 {
+        margin-top: 16px;
+    }
+
+    ::ng-deep #mail-content div h3 {
+        font-size: 15px !important;
+    }
+
+    ::ng-deep #mail-content td h1 {
+        font-size: 17px !important;
+    }
+
+    ::ng-deep #mail-content td img {
+        width: 90px;
+        margin-top: 20px !important;
+    }
+
+    .contract_name {
+        font-size: 15px;
+    }
+
+    .contract_email {
+        font-size: 13px;
+    }
+}

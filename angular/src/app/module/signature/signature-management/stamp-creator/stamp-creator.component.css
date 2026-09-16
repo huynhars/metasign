@@ -1,131 +1,178 @@
+/* ==========================================================================
+   1. CĂN GIỮA MÀN HÌNH MỌI THIẾT BỊ (ĐẶC BIỆT LÀ TABLET)
+   ========================================================================== */
+/* Căn giữa lớp Overlay Wrapper của Angular Material */
+::ng-deep .cdk-overlay-pane {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+}
+
+/* Khung Dialog chính */
+::ng-deep .signature_dialog .mat-dialog-container,
+::ng-deep .mat-dialog-container {
+    padding: 0 !important;
+    overflow: visible !important;
+    width: 650px !important;
+    max-width: 90vw !important; /* Giữ lề hai bên, không kịch khung tablet */
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+}
+
+::ng-deep .dialog,
 .dialog {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.dialog_btn {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-body {
-  height: 60vh;
-}
-
-.signature_tab {
-  height: 75vh;
-  overflow: hidden;
-  width: 90%;
-  margin: 0 auto;
-  max-height: 75vh;
-}
-
-.signature_tab--upload {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  width: 100%;
-  height: 54vh;
-  border: 2px dashed rgb(204, 204, 204);
-  background-color: #f9f9f9;
-}
-
-.upload_signature {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.upload_signature--success {
-  display: flex;
-  gap: 0 20px;
-}
-#upload {
-  opacity: 0;
-}
-
-.upload_label {
-  width: 140px;
-  margin: 12px auto auto auto;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: 0.66px;
-  text-align: center;
-  background-color: rgb(249, 249, 249);
-  border: 1px solid rgb(204, 204, 204);
-  color: rgb(30, 30, 30);
-  font-size: 12px;
-  padding: 4px 14px;
-}
-
-
-
-.upload_label:hover {
-  background-color: rgb(233, 233, 233);
-  transition: background-color 0.4s;
-}
-
-.upload_signature i {
-  font-size: 40px;
-}
-
-.upload_signature img {
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-}
-
-.upload_signature button {
-  margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto !important;
+    overflow: visible !important;
 }
 
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
 }
 
 .card-header_icon {
-  font-size: 40px;
+    font-size: 32px;
+}
+
+.card-body {
+    height: auto !important;
+    max-height: none !important;
+    padding: 16px 24px;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   2. KHU VỰC TAB VÀ VÙNG CẮT CON DẤU
+   ========================================================================== */
+.signature_tab {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto;
+    overflow: visible !important;
+}
+
+.signature_tab--upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 320px !important;
+    padding: 16px;
+    box-sizing: border-box;
+    border: 2px dashed rgb(204, 204, 204);
+    background-color: #f9f9f9;
+}
+
+.upload_signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+    .upload_signature img {
+        margin: 0 auto;
+        width: 80px;
+        height: 80px;
+    }
+
+/* ==========================================================================
+   3. CĂN CÁC NÚT BẤM (THAY ĐỔI, XÓA & HỦY, LƯU BÊN PHẢI)
+   ========================================================================== */
+/* Cụm nút Thay đổi & Xóa */
+.upload_signature--success {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 16px !important;
+    margin-top: 16px !important;
+    width: 100%;
+}
+
+    .upload_signature--success button,
+    .upload_signature--success .upload_label,
+    .upload_signature button {
+        min-width: 110px !important;
+        height: 38px !important;
+        line-height: 36px !important;
+        margin: 0 !important;
+        padding: 0 16px !important;
+        box-sizing: border-box !important;
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        font-size: 13px !important;
+        font-weight: 600;
+    }
+
+#upload {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.upload_label {
+    cursor: pointer;
+    text-align: center;
+    background-color: rgb(249, 249, 249);
+    border: 1px solid rgb(204, 204, 204);
+    color: rgb(30, 30, 30);
+}
+
+.upload_signature--note {
+    margin-top: 12px;
+    padding: 0;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
 }
 
 input[type="checkbox"] {
-  accent-color: var(--primary-color) !important;
-  width: 20px !important;
-  height: 20px !important;
-  transform: translateY(25%);
+    accent-color: var(--primary-color) !important;
+    width: 18px !important;
+    height: 18px !important;
+    transform: translateY(20%);
 }
 
+/* ÉP CỤM NÚT FOOTER (HỦY, LƯU) VỀ BÊN PHẢI */
 ::ng-deep .mat-dialog-actions {
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-  margin-bottom: 0;
-  padding: 8px 20px;
+    display: flex !important;
+    justify-content: flex-end !important; /* Đẩy toàn bộ nút về góc phải */
+    align-items: center !important;
+    gap: 12px !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    margin: 0 !important;
+    padding: 12px 24px !important;
 }
 
-::ng-deep .dialog {
-  justify-content: space-between;
-}
+/* ==========================================================================
+   4. TỐI ƯU RESPONSIVE TABLET (MAX-WIDTH: 1024PX)
+   ========================================================================== */
+@media only screen and (max-width: 1024px) {
+    ::ng-deep .signature_dialog .mat-dialog-container,
+    ::ng-deep .mat-dialog-container {
+        width: 580px !important;
+        max-width: 88vw !important;
+    }
 
-::ng-deep .signature_dialog .mat-dialog-container {
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-#signature-pad input[type="text"] {
-  position: absolute;
-  border: 1px solid #000;
-  padding: 4px;
-  background-color: #fff;
-}
-
-input[type="text"]:hover {
-  cursor: pointer;
-}
-
-.upload_signature--note{
-  margin: 0;
-  padding: 0;
-  margin-top: 10px;
-  cursor: pointer;
+    .signature_tab--upload {
+        min-height: 280px !important;
+    }
 }

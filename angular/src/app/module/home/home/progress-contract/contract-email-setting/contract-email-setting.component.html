@@ -1,5 +1,6 @@
-<div class="setting_email px-5 mt-4">
-  <div class="col-7">
+<div class="setting_email px-3 px-lg-5 mt-4 row">
+  <!-- Cột bên trái: Email Content -->
+  <div class="col-12 col-lg-7 mb-4 mb-lg-0">
     <div class="row">
       <h4 class="email_text--input pr-3">{{'MailContent' | ecTranslate}}</h4>
       <button class="btn-edit-mail button" (click)="editMailTemplate()">
@@ -7,18 +8,20 @@
       </button>
     </div>
     <div
-      class="wrapper-mail-content border w-100 h-100 px-5 pt-5 position-relative"
+      class="wrapper-mail-content border w-100 h-100 px-3 px-lg-5 pt-4 pt-lg-5 position-relative"
       style="background-color: #e9e9e9"
     >
       <div
-        class="px-4 py-2 bg-white"
+        class="px-3 px-lg-4 py-2 bg-white"
         id="mail-content"
         [innerHTML]="displayMailContent"
       ></div>
       <div class="overlay-content-mail"></div>
     </div>
   </div>
-  <div class="col-5 px-3">
+
+  <!-- Cột bên phải: Contract & Signers -->
+  <div class="col-12 col-lg-5 px-3">
     <div class="email_contract--file">
       <h4 class="email_contract--title mb-3">{{'Contract' | ecTranslate}}</h4>
       <p>
@@ -51,7 +54,7 @@
             </div>
             <div
               style="font-size: 17px"
-              class="col-3"
+              class="col-4 col-sm-3"
               [ngClass]="
                 signer.contractRole == 1 ? 'text-success' : 'text-primary'
               "
@@ -85,6 +88,7 @@
       </div>
     </div>
   </div>
+
   <div class="btn_step px-5 border">
     <button
       (click)="handleBack()"

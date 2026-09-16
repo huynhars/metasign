@@ -328,3 +328,68 @@
     height: 87.55vh;
   }
 }
+
+/* --- BÊN TRÁI --- */
+/* Đảm bảo tiêu đề không bị rớt chữ xuống thành hàng dọc */
+.design_left--title {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Đảm bảo danh sách loại chữ ký không bị bó hẹp làm tràn icon */
+.signature_list--item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 10px 0; /* Thu gọn margin 2 bên */
+}
+
+    .signature_list--item div {
+        margin-left: 8px;
+        font-weight: 600;
+        white-space: nowrap; /* Không xuống dòng chữ bên cạnh icon */
+        word-break: normal;
+    }
+
+/* --- BÊN PHẢI --- */
+.contract_design--page header h5 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.contract_design--page header p {
+    font-size: 13px;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* --- RESPONSIVE MEDIA QUERIES (Sửa vấn đề co màn hình) --- */
+@media screen and (max-width: 1200px) {
+    /* Cho 2 cột 2 bên rộng ra một chút khi màn hình hẹp lại */
+    .contract_design--left,
+    .contract_design--right {
+        width: 20%;
+    }
+
+    .contract_design--viewer {
+        width: 60%;
+        padding: 20px; /* Giảm padding để khoảng trống viewer rộng hơn */
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .contract_design--left,
+    .contract_design--right {
+        width: 22%;
+    }
+
+    .contract_design--viewer {
+        width: 56%;
+    }
+
+    .design_left--title {
+        font-size: 14px;
+    }
+}

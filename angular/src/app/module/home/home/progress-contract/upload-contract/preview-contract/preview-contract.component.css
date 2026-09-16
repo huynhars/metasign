@@ -1,3 +1,4 @@
+```css
 ::ng-deep #header .modal-header {
   padding: 0 !important;
 }
@@ -5,6 +6,7 @@
 ::ng-deep #header .modal-header .modal-title {
   transform: translateY(-4px) !important;
 }
+
 ::ng-deep #header .modal-header .close {
   transform: translateY(-16px) !important;
 }
@@ -37,7 +39,11 @@
 ::ng-deep .mat-dialog-container {
   padding: 24px;
 }
+
 .preview-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
   object-fit: contain !important;
   border: 3px #026351 solid;
   border-radius: 7px;
@@ -58,3 +64,114 @@
 .value-input {
   padding: 4px 7px;
 }
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+  /* Modal vừa màn hình tablet */
+  ::ng-deep .mat-dialog-container {
+    padding: 16px !important;
+    max-width: 100vw !important;
+    max-height: 95vh !important;
+    overflow: hidden !important;
+  }
+
+  ::ng-deep .cdk-overlay-pane {
+    max-width: 92vw !important;
+    width: 92vw !important;
+  }
+
+  /* Header */
+  ::ng-deep #header .modal-header {
+    padding: 10px 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 48px;
+  }
+
+  ::ng-deep #header .modal-header .modal-title {
+    transform: none !important;
+    margin: 0 !important;
+    font-size: 18px !important;
+    line-height: 1.3;
+    display: block !important;
+    visibility: visible !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ::ng-deep #header .modal-header .close {
+    transform: none !important;
+    position: static !important;
+    display: block !important;
+    visibility: visible !important;
+    flex-shrink: 0;
+    font-size: 24px;
+    line-height: 1;
+    margin-left: 12px;
+  }
+
+  /* Nội dung */
+  .wrapper {
+    height: calc(95vh - 100px);
+    max-height: calc(95vh - 100px);
+    padding: 24px !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* Icon không bị mất */
+  .preview-icon {
+    display: block !important;
+    visibility: visible !important;
+    width: 100px !important;
+    height: 100px !important;
+    max-width: 100px !important;
+    object-fit: contain !important;
+    flex-shrink: 0;
+  }
+
+  /* Title / text không bị biến mất */
+  .text-area {
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .text-area * {
+    max-width: 100%;
+  }
+
+  .value-date,
+  .value-input {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Nếu icon + thông tin nằm cùng row */
+  .preview-icon + * {
+    min-width: 0;
+  }
+
+  /* Không cho ảnh thiết kế phá modal */
+  #design_viewer {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #design_viewer img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+
+

@@ -16,7 +16,7 @@
 }
 
 
-/* header */
+
 .btn-add {
   display: block;
   margin: 0 auto;
@@ -266,3 +266,89 @@ table {
   }
 }
 
+@media only screen and (max-width: 1024px) {
+    .sidebar.col-2 {
+        flex: 0 0 240px;
+        max-width: 240px;
+        width: 240px;
+    }
+
+    .content.table-contract.col-10 {
+        flex: 1 1 auto;
+        max-width: calc(100% - 240px);
+        width: auto;
+    }
+
+    .title-sidebar {
+        font-size: 1.05rem;
+        padding: 4px 12px;
+    }
+
+    .sidebar-item {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+
+    .btn-add {
+        font-size: 14px;
+        padding: 0 6px;
+    }
+}
+
+/* iPad dọc hẹp hơn (<= 834px): thu nhỏ sidebar thêm chút, giữ nguyên cấu trúc */
+@media only screen and (max-width: 834px) {
+    .sidebar.col-2 {
+        flex: 0 0 200px;
+        max-width: 200px;
+        width: 200px;
+    }
+
+    .content.table-contract.col-10 {
+        max-width: calc(100% - 200px);
+    }
+
+    .title-sidebar {
+        font-size: 1rem;
+        padding: 4px 10px;
+    }
+
+    .sidebar-item {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .btn-add {
+        font-size: 13px;
+        padding: 0 4px;
+    }
+}
+
+.sidebar-item.row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+}
+
+    .sidebar-item.row i {
+        flex: 0 0 28px !important;
+        max-width: 28px !important;
+        width: 28px !important;
+        height: 28px;
+        padding-right: 0 !important;
+        margin: 0 !important;
+        font-size: 1rem;
+        line-height: 1;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        transform: none !important; 
+    }
+
+    .sidebar-item.row span {
+        flex: 1 1 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 8px;
+    }

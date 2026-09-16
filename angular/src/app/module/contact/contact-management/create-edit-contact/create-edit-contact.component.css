@@ -1,3 +1,35 @@
 .modal-body {
   padding-top: 30px !important;
 }
+@media only screen and (max-width: 1024px) {
+    .form-group.row {
+        flex-direction: column;
+    }
+
+        .form-group.row .col-md-3,
+        .form-group.row .col-md-9 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .form-group.row .col-md-3 {
+            padding-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .form-group.row .col-md-9 {
+            margin-top: 0;
+        }
+}
+
+/* iPad dọc hẹp hơn (<= 834px) */
+@media only screen and (max-width: 834px) {
+    .modal-body {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+    }
+}

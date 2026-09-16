@@ -157,3 +157,101 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* ==========================================================================
+   RESPONSIVE TABLET & IPAD PRO (<= 1024px)
+   ========================================================================== */
+@media only screen and (max-width: 1024px) {
+    .wapper {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Sidebar category: nới rộng đủ dùng (không dùng col-3 % cố định gây
+     chật trên tablet), content chiếm phần còn lại */
+    .row.h-100 {
+        flex-wrap: nowrap;
+    }
+
+    .col-3.contract_category {
+        flex: 0 0 220px;
+        max-width: 220px;
+        width: 220px;
+        padding: 16px;
+    }
+
+    .col-9.contract_template--container {
+        flex: 1 1 auto;
+        max-width: calc(100% - 220px);
+        width: auto;
+        padding: 16px;
+    }
+
+    /* Tiêu đề "Tất cả": rộng hết hàng, chừa khoảng trống bên phải để
+     không bị nút X (position: absolute, top:10 right:10) đè lên */
+    .contract_template--title {
+        width: 100%;
+        padding-right: 44px;
+        box-sizing: border-box;
+        margin-top: 0;
+        font-size: 1.3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .contract_close {
+        top: 16px;
+        right: 16px;
+    }
+
+    /* Lưới thumbnail: 2 cột thay vì 3 (col-4) cho vừa khung hẹp hơn */
+    .contract_template--list .col-4 {
+        flex: 0 0 46%;
+        max-width: 46%;
+    }
+
+    .contract_category--search {
+        width: 100%;
+    }
+}
+
+/* iPad dọc hẹp hơn (<= 834px) */
+@media only screen and (max-width: 834px) {
+    .col-3.contract_category {
+        flex: 0 0 180px;
+        max-width: 180px;
+        width: 180px;
+        padding: 12px;
+    }
+
+    .col-9.contract_template--container {
+        max-width: calc(100% - 180px);
+        padding: 12px;
+    }
+
+    .contract_category--item {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    .contract_template--title {
+        font-size: 1.15rem;
+        padding-right: 36px;
+    }
+
+    /* Vẫn giữ 2 cột thay vì rớt xuống 1 cột full-width */
+    .contract_template--list .col-4 {
+        flex: 0 0 46%;
+        max-width: 46%;
+    }
+
+    .contract_template--name {
+        font-size: 0.9rem;
+    }
+
+    .contract_template--btn {
+        font-size: 11px;
+        padding: 4px;
+    }
+}

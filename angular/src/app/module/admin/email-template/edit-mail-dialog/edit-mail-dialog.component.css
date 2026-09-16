@@ -1,40 +1,227 @@
 .email-dialog .mat-dialog-container {
-  padding: 0;
+    padding: 0;
 }
 
 :host ::ng-deep abp-modal-header h4 {
-  margin-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 :host ::ng-deep .email-dialog mat-dialog-container {
-  padding: 0 !important;
+    padding: 0 !important;
 }
 
 .background-card {
-  background-color: rgb(242, 245, 245);
+    background-color: rgb(242, 245, 245);
 }
 
 .btn-save {
-  height: 36px;
+    height: 36px;
 }
 
 table thead th {
-  text-align: left;
+    text-align: left;
 }
 
 :host ::ng-deep .tox .tox-promotion {
-  display: none;
+    display: none;
 }
 
 ul {
-  width: fit-content;
-  margin-block-end: 0px;
-  margin-right: 0px;
+    width: fit-content;
+    margin-block-end: 0px;
+    margin-right: 0px;
 }
 
-ul li {
-  list-style-type: none;
-}
+    ul li {
+        list-style-type: none;
+    }
+
 :host ::ng-deep body dev dev {
-  width: 780px !important;
+    width: 780px !important;
+}
+
+/* ===== Thanh menu (File Edit View...) & thanh công cụ TinyMCE luôn nằm
+   1 hàng ngang, không bẻ xuống dòng. Không ép overflow-x:auto (tránh sinh
+   thanh cuộn ngang không mong muốn) — để TinyMCE tự thu gọn nút thừa vào
+   nút "..." theo cơ chế mặc định (toolbar_mode: sliding). ===== */
+:host ::ng-deep .tox-menubar {
+    flex-wrap: nowrap !important;
+}
+
+:host ::ng-deep .tox-toolbar,
+:host ::ng-deep .tox-toolbar__primary,
+:host ::ng-deep .tox-toolbar-overlord {
+    flex-wrap: nowrap !important;
+}
+
+:host ::ng-deep .tox-mbtn {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .table.table-responsive,
+    .table.table-responsive table,
+    .table.table-responsive tbody,
+    .table.table-responsive tr {
+        display: block;
+        width: 100%;
+    }
+
+        .table.table-responsive td {
+            display: block;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        .table.table-responsive thead {
+            display: block;
+        }
+
+            .table.table-responsive thead tr {
+                display: flex;
+                justify-content: space-between;
+            }
+
+    /* Form "To" / "Subject": label chuyển lên trên, input full-width */
+    .form-group.row {
+        flex-direction: column;
+    }
+
+        .form-group.row .col-2,
+        .form-group.row .col-10 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .form-group.row .col-2 {
+            padding-bottom: 4px;
+            font-weight: 500;
+        }
+
+    .d-flex.px-3.align-items-center.py-1 .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .property-support {
+        margin-top: 12px;
+        max-height: 30vh;
+        overflow-y: auto;
+    }
+
+        .property-support ul {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+            .property-support ul li {
+                background-color: #fff;
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                padding: 4px 10px;
+                font-size: 0.9rem;
+            }
+
+    :host ::ng-deep body dev dev {
+        width: 100% !important;
+    }
+}
+
+/* iPad dọc hẹp hơn (<= 834px) */
+@media only screen and (max-width: 834px) {
+    .p-3.background-card {
+        padding: 10px !important;
+    }
+
+    .property-support ul li {
+        font-size: 0.85rem;
+        padding: 3px 8px;
+    }
+}
+
+
+@media only screen and (max-width: 1024px) {
+    
+    ::ng-deep .cdk-overlay-pane:has([role="dialog"]) {
+        width: 92vw !important;
+        max-width: 92vw !important;
+        height: auto !important;
+        max-height: 92vh !important;
+        margin: 4vh auto !important;
+    }
+
+    ::ng-deep .mat-mdc-dialog-container,
+    ::ng-deep .mat-dialog-container {
+        max-height: 92vh !important;
+        overflow-y: auto !important;
+        border-radius: 8px; /* bo góc nhẹ, tránh cảm giác dính khung cứng */
+    }
+
+
+    :host ::ng-deep .tox-tinymce {
+        max-height: 42vh !important;
+        height: 42vh !important;
+    }
+
+    :host ::ng-deep .tox-edit-area,
+    :host ::ng-deep .tox-edit-area__iframe {
+        max-height: calc(42vh - 90px) !important; /* trừ chiều cao menubar+toolbar */
+        height: calc(42vh - 90px) !important;
+    }
+
+    .p-3.background-card {
+        padding: 12px !important;
+    }
+
+    .card.mb-0 {
+        padding: 0;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    ::ng-deep .cdk-overlay-pane:has([role="dialog"]) {
+        width: 90vw !important;
+        max-width: 90vw !important;
+        max-height: 88vh !important;
+        margin: 6vh auto !important;
+    }
+
+    :host ::ng-deep .tox-tinymce {
+        max-height: 36vh !important;
+        height: 36vh !important;
+    }
+
+    :host ::ng-deep .tox-edit-area,
+    :host ::ng-deep .tox-edit-area__iframe {
+        max-height: calc(36vh - 80px) !important;
+        height: calc(36vh - 80px) !important;
+    }
+
+    .form-group.row {
+        margin-bottom: 8px;
+    }
+
+    .property-support {
+        max-height: 22vh;
+    }
+
+    .property-support ul li {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+
+    .modal-footer {
+        padding: 10px 14px;
+    }
+
+    .btn-action {
+        font-size: 0.9rem;
+        padding: 6px 14px;
+    }
 }

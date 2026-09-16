@@ -18,7 +18,7 @@
                 <i class="fa fa-plus pr-1"></i>
                 {{ "AddSignature" | ecTranslate }}
               </button>
-              <mat-menu #menu="matMenu">
+              <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
                 <button (click)="handleAddSignature()" mat-menu-item> {{ "ElectronicSignature" | ecTranslate }}</button>
                 <button (click)="handleAddSignatureStamp()" mat-menu-item>{{ "Stamp" | ecTranslate }}</button>
               </mat-menu>              
