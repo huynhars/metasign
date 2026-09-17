@@ -1,8 +1,10 @@
-﻿using Abp.EntityFrameworkCore.Configuration;
+﻿using Abp.Dependency; // Thêm namespace này
+using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
 using EC.EntityFrameworkCore.Seed;
+using Microsoft.EntityFrameworkCore; // Thêm namespace này
 
 namespace EC.EntityFrameworkCore
 {
@@ -41,6 +43,13 @@ namespace EC.EntityFrameworkCore
 
         public override void PostInitialize()
         {
+            // TỰ ĐỘNG CHẠY MIGRATION TẠO BẢNG POSTGRESQL NẾU CHƯA CÓ
+            using (var scope = IocManager.CreateScope())
+            {
+                var dbContext = scope.Resolve<ECDbContext>();
+                dbContext.Database.Migrate();
+            }
+
             if (!SkipDbSeed)
             {
                 SeedHelper.SeedHostDb(IocManager);
