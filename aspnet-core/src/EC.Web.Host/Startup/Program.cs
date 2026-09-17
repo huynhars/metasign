@@ -3,6 +3,7 @@ using Abp.Dependency;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Globalization; // Thêm thư viện này
 
 namespace EC.Web.Host.Startup
 {
@@ -10,6 +11,10 @@ namespace EC.Web.Host.Startup
     {
         public static void Main(string[] args)
         {
+            // Ép hệ thống dùng InvariantCulture để tránh crash khi chạy Invariant Mode
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
             CreateHostBuilder(args).Build().Run();
         }
 

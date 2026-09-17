@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>EC.Web.Host</AssemblyName>
@@ -12,9 +13,11 @@
     <LangVersion>7.2</LangVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
     <Content Remove="wwwroot\swagger\ui\index.html" />
   </ItemGroup>
+
   <ItemGroup>
     <None Include="app.config" />
     <None Update="Dockerfile">
@@ -28,9 +31,11 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\EC.Web.Core\EC.Web.Core.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Abp.Castle.Log4Net" Version="7.3.0" />
     <PackageReference Include="AWSSDK.Core" Version="3.7.200.10" />
@@ -40,11 +45,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\swagger\ui\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\digitalSignatureImg\" />
     <Folder Include="wwwroot\tempConvert\" />
