@@ -9,6 +9,11 @@ RUN dotnet publish "EC.Web.Host.csproj" -c Release -o /app/out
 # Stage 2: Runtime với ASP.NET 6
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
+
+# Cài đặt thư viện ICU hỗ trợ Globalization
+RUN apt-get update && apt-get install -y libicu-dev && rm -rf /var/lib/apt/lists/*
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+
 COPY --from=build /app/out .
 
 EXPOSE 80
