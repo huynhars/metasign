@@ -1,4 +1,4 @@
-# Stage 1: Build dự án
+# Stage 1: Build bằng .NET 6 SDK
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
@@ -6,12 +6,12 @@ COPY . .
 WORKDIR "/src/EC.Web.Host"
 RUN dotnet publish "EC.Web.Host.csproj" -c Release -o /app/out
 
-# Stage 2: Runtime chính thức từ Microsoft (dùng Debian Slim ổn định)
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+# Stage 2: Runtime dùng bản Ubuntu (Tích hợp sẵn ICU, không bị lỗi 139 hay 404)
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS final
 WORKDIR /app
 
-# Tắt phụ thuộc thư viện Globalization để ngăn hoàn toàn lỗi Segmentation Fault (139)
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+# Tắt Invariant Mode để ABP Framework đọc được Culture "en", "vi"...
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 COPY --from=build /app/out .
 
