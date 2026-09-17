@@ -42,6 +42,13 @@ namespace EC.EntityFrameworkCore
 
         public override void PostInitialize()
         {
+            // Migrate DB TRƯỚC khi seed — DbContextOptions đã đăng ký xong ở PreInitialize
+            using (var scope = IocManager.CreateScope())
+            {
+                var dbContext = scope.Resolve<ECDbContext>();
+                dbContext.Database.Migrate();
+            }
+
             if (!SkipDbSeed)
             {
                 SeedHelper.SeedHostDb(IocManager);

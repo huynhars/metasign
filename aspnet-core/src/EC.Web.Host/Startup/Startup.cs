@@ -107,21 +107,7 @@ namespace EC.Web.Host.Startup
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
             // --- Tự động migrate DB sau khi ABP/Windsor đã khởi tạo xong ---
-            using (var scope = IocManager.Instance.CreateScope())
-            {
-                var logger = loggerFactory.CreateLogger<Startup>();
-                try
-                {
-                    var dbContext = scope.Resolve<ECDbContext>();
-                    dbContext.Database.Migrate();
-                    logger.LogInformation("Database migration completed successfully.");
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "An error occurred while migrating the database.");
-                    throw;
-                }
-            }
+            
             // ----------------------------------------------------------------
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
