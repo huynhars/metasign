@@ -6,13 +6,12 @@ COPY . .
 WORKDIR "/src/EC.Web.Host"
 RUN dotnet publish "EC.Web.Host.csproj" -c Release -o /app/out
 
-# Stage 2: Runtime với ASP.NET 6
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+# Stage 2: Runtime với .NET 6 Alpine (Siêu nhẹ & không bị lỗi repo)
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS final
 WORKDIR /app
 
-# Cài đặt thư viện ICU runtime (Sử dụng 'libicu*' chung cho mọi bản Debian)
-USER root
-RUN apt-get update && apt-get install -y --no-install-recommends libicu* && rm -rf /var/lib/apt/lists/*
+# Cài đặt icu-libs trên Alpine
+RUN apk add --no-cache icu-libs
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 COPY --from=build /app/out .
