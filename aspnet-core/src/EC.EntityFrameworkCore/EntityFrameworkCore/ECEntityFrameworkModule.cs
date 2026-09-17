@@ -1,52 +1,45 @@
-﻿using Abp.Dependency;
-using Abp.EntityFrameworkCore.Configuration;
-using Abp.Modules;
-using Abp.Reflection.Extensions;
-using Abp.Zero.EntityFrameworkCore;
-using EC.EntityFrameworkCore.Seed;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore; // cần cho .Migrate()
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using EC.EntityFrameworkCore;
+using System;
+using MSHost = Microsoft.Extensions.Hosting.Host; // alias tránh đụng namespace EC.Web.Host
 
-namespace EC.EntityFrameworkCore
+namespace EC.Web.Host.Startup
 {
-    [DependsOn(
-        typeof(ECCoreModule),
-        typeof(AbpZeroCoreEntityFrameworkCoreModule))]
-    public class ECEntityFrameworkModule : AbpModule
+    public class Program
     {
-        public bool SkipDbContextRegistration { get; set; }
-
-        public bool SkipDbSeed { get; set; }
-
-        public override void PreInitialize()
+        public static void Main(string[] args)
         {
-            if (!SkipDbContextRegistration)
+            var host = CreateHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
             {
-                Configuration.Modules.AbpEfCore().AddDbContext<ECDbContext>(options =>
+                var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                try
                 {
-                    if (options.ExistingConnection != null)
-                    {
-                        ECDbContextConfigurer.Configure(options.DbContextOptions, options.ExistingConnection);
-                    }
-                    else
-                    {
-                        ECDbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
-                    }
+                    var dbContext = services.GetRequiredService<ECDbContext>();
+                    dbContext.Database.Migrate();
+                    logger.LogInformation("Database migration completed successfully.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "An error occurred while migrating the database.");
+                    throw;
+                }
+            }
+
+            host.Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            MSHost.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
                 });
-            }
-        }
-
-        public override void Initialize()
-        {
-            IocManager.RegisterAssemblyByConvention(typeof(ECEntityFrameworkModule).GetAssembly());
-        }
-
-        public override void PostInitialize()
-        {
-            // KHÔNG migrate ở đây nữa — chuyển sang Program.cs
-            if (!SkipDbSeed)
-            {
-                SeedHelper.SeedHostDb(IocManager);
-            }
-        }
     }
 }
