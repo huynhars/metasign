@@ -107,26 +107,39 @@ namespace EC.Web.Host.Startup
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
-            // --- Migrate + Seed DB, chạy SAU khi ABP/Windsor đã khởi tạo xong hoàn toàn ---
-            using (var scope = IocManager.Instance.CreateScope())
+            // --- Migrate DB độc lập, KHÔNG qua Windsor/IocManager ---
+            var logger = loggerFactory.CreateLogger<Startup>();
+            try
             {
-                var logger = loggerFactory.CreateLogger<Startup>();
-                try
+                var connectionString = _appConfiguration.GetConnectionString("Default");
+
+                var optionsBuilder = new DbContextOptionsBuilder<ECDbContext>();
+                ECDbContextConfigurer.Configure(optionsBuilder, connectionString);
+
+                using (var dbContext = new ECDbContext(optionsBuilder.Options))
                 {
-                    var dbContext = scope.Resolve<ECDbContext>();
                     dbContext.Database.Migrate();
                     logger.LogInformation("Database migration completed successfully.");
-
-                    SeedHelper.SeedHostDb(IocManager.Instance);
-                    logger.LogInformation("Database seed completed successfully.");
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "An error occurred while migrating/seeding the database.");
-                    throw;
                 }
             }
-            // --------------------------------------------------------------------------------
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while migrating the database.");
+                throw;
+            }
+
+            // Seed sau khi migrate xong, DB đã có bảng
+            try
+            {
+                SeedHelper.SeedHostDb(IocManager.Instance);
+                logger.LogInformation("Database seed completed successfully.");
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred while seeding the database.");
+                throw;
+            }
+            // -----------------------------------------------------------
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
