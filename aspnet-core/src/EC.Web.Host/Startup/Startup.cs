@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using EC.FileStorageServices;
 using EC.EntityFrameworkCore;
+using EC.EntityFrameworkCore.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace EC.Web.Host.Startup
@@ -106,9 +107,26 @@ namespace EC.Web.Host.Startup
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
-            // --- Tự động migrate DB sau khi ABP/Windsor đã khởi tạo xong ---
-            
-            // ----------------------------------------------------------------
+            // --- Migrate + Seed DB, chạy SAU khi ABP/Windsor đã khởi tạo xong hoàn toàn ---
+            using (var scope = IocManager.Instance.CreateScope())
+            {
+                var logger = loggerFactory.CreateLogger<Startup>();
+                try
+                {
+                    var dbContext = scope.Resolve<ECDbContext>();
+                    dbContext.Database.Migrate();
+                    logger.LogInformation("Database migration completed successfully.");
+
+                    SeedHelper.SeedHostDb(IocManager.Instance);
+                    logger.LogInformation("Database seed completed successfully.");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "An error occurred while migrating/seeding the database.");
+                    throw;
+                }
+            }
+            // --------------------------------------------------------------------------------
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 

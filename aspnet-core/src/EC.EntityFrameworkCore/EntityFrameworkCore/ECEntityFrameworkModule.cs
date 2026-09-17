@@ -13,6 +13,7 @@ namespace EC.EntityFrameworkCore
         typeof(AbpZeroCoreEntityFrameworkCoreModule))]
     public class ECEntityFrameworkModule : AbpModule
     {
+        /* Used it tests to skip dbcontext registration, in order to use in-memory database of EF Core */
         public bool SkipDbContextRegistration { get; set; }
 
         public bool SkipDbSeed { get; set; }
@@ -40,19 +41,9 @@ namespace EC.EntityFrameworkCore
             IocManager.RegisterAssemblyByConvention(typeof(ECEntityFrameworkModule).GetAssembly());
         }
 
-        public override void PostInitialize()
-        {
-            // Migrate DB TRƯỚC khi seed — DbContextOptions đã đăng ký xong ở PreInitialize
-            using (var scope = IocManager.CreateScope())
-            {
-                var dbContext = scope.Resolve<ECDbContext>();
-                dbContext.Database.Migrate();
-            }
-
-            if (!SkipDbSeed)
-            {
-                SeedHelper.SeedHostDb(IocManager);
-            }
-        }
+        // Migrate + Seed KHÔNG còn ở đây. DbContextOptions<ECDbContext> chưa
+        // resolve được ổn định trong lúc PostInitialize của các module đang chạy
+        // (giữa Windsor / AspNetCore DI sync). Cả 2 việc chuyển sang
+        // EC.Web.Host/Startup/Startup.cs, chạy sau khi app.UseAbp() hoàn tất.
     }
 }
