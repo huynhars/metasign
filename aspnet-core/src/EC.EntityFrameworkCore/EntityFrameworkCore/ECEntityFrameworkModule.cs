@@ -1,45 +1,59 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore; // cần cho .Migrate()
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using EC.EntityFrameworkCore;
-using System;
-using MSHost = Microsoft.Extensions.Hosting.Host; // alias tránh đụng namespace EC.Web.Host
+﻿using Abp.Dependency; // Thêm namespace này
+using Abp.EntityFrameworkCore.Configuration;
+using Abp.Modules;
+using Abp.Reflection.Extensions;
+using Abp.Zero.EntityFrameworkCore;
+using EC.EntityFrameworkCore.Seed;
+using Microsoft.EntityFrameworkCore; // Thêm namespace này
 
-namespace EC.Web.Host.Startup
+namespace EC.EntityFrameworkCore
 {
-    public class Program
+    [DependsOn(
+        typeof(ECCoreModule), 
+        typeof(AbpZeroCoreEntityFrameworkCoreModule))]
+    public class ECEntityFrameworkModule : AbpModule
     {
-        public static void Main(string[] args)
+        /* Used it tests to skip dbcontext registration, in order to use in-memory database of EF Core */
+        public bool SkipDbContextRegistration { get; set; }
+
+        public bool SkipDbSeed { get; set; }
+
+        public override void PreInitialize()
         {
-            var host = CreateHostBuilder(args).Build();
-
-            using (var scope = host.Services.CreateScope())
+            if (!SkipDbContextRegistration)
             {
-                var services = scope.ServiceProvider;
-                var logger = services.GetRequiredService<ILogger<Program>>();
-                try
+                Configuration.Modules.AbpEfCore().AddDbContext<ECDbContext>(options =>
                 {
-                    var dbContext = services.GetRequiredService<ECDbContext>();
-                    dbContext.Database.Migrate();
-                    logger.LogInformation("Database migration completed successfully.");
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "An error occurred while migrating the database.");
-                    throw;
-                }
+                    if (options.ExistingConnection != null)
+                    {
+                        ECDbContextConfigurer.Configure(options.DbContextOptions, options.ExistingConnection);
+                    }
+                    else
+                    {
+                        ECDbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
+                    }
+                });
             }
-
-            host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            MSHost.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public override void Initialize()
+        {
+            IocManager.RegisterAssemblyByConvention(typeof(ECEntityFrameworkModule).GetAssembly());
+        }
+
+        public override void PostInitialize()
+        {
+            // TỰ ĐỘNG CHẠY MIGRATION TẠO BẢNG POSTGRESQL NẾU CHƯA CÓ
+            using (var scope = IocManager.CreateScope())
+            {
+                var dbContext = scope.Resolve<ECDbContext>();
+                dbContext.Database.Migrate();
+            }
+
+            if (!SkipDbSeed)
+            {
+                SeedHelper.SeedHostDb(IocManager);
+            }
+        }
     }
 }
