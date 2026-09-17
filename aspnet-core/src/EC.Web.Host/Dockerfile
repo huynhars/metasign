@@ -10,8 +10,9 @@ RUN dotnet publish "EC.Web.Host.csproj" -c Release -o /app/out
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
 
-# Cài đặt thư viện ICU hỗ trợ Globalization
-RUN apt-get update && apt-get install -y libicu-dev && rm -rf /var/lib/apt/lists/*
+# Cài đặt thư viện ICU runtime (Sử dụng 'libicu*' chung cho mọi bản Debian)
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends libicu* && rm -rf /var/lib/apt/lists/*
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 COPY --from=build /app/out .
