@@ -1,19 +1,18 @@
-﻿using Abp.Dependency; // Thêm namespace này
+﻿using Abp.Dependency;
 using Abp.EntityFrameworkCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
 using EC.EntityFrameworkCore.Seed;
-using Microsoft.EntityFrameworkCore; // Thêm namespace này
+using Microsoft.EntityFrameworkCore;
 
 namespace EC.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(ECCoreModule), 
+        typeof(ECCoreModule),
         typeof(AbpZeroCoreEntityFrameworkCoreModule))]
     public class ECEntityFrameworkModule : AbpModule
     {
-        /* Used it tests to skip dbcontext registration, in order to use in-memory database of EF Core */
         public bool SkipDbContextRegistration { get; set; }
 
         public bool SkipDbSeed { get; set; }
@@ -43,13 +42,6 @@ namespace EC.EntityFrameworkCore
 
         public override void PostInitialize()
         {
-            // TỰ ĐỘNG CHẠY MIGRATION TẠO BẢNG POSTGRESQL NẾU CHƯA CÓ
-            using (var scope = IocManager.CreateScope())
-            {
-                var dbContext = scope.Resolve<ECDbContext>();
-                dbContext.Database.Migrate();
-            }
-
             if (!SkipDbSeed)
             {
                 SeedHelper.SeedHostDb(IocManager);
