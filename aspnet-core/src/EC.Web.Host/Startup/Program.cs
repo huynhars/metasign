@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using EC.EntityFrameworkCore;
 using System;
+using MSHost = Microsoft.Extensions.Hosting.Host;
 
 namespace EC.Web.Host.Startup
 {
@@ -26,7 +28,7 @@ namespace EC.Web.Host.Startup
                 catch (Exception ex)
                 {
                     logger.LogError(ex, "An error occurred while migrating the database.");
-                    throw; // để container fail rõ ràng thay vì chạy app với DB sai schema
+                    throw;
                 }
             }
 
@@ -34,7 +36,7 @@ namespace EC.Web.Host.Startup
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            MSHost.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
