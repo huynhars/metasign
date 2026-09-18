@@ -13,12 +13,6 @@ WORKDIR /app
 # Tắt Invariant Mode để ABP Framework đọc được Culture "en", "vi"...
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
-# 🟢 THÊM DÒNG NÀY: Ép .NET lắng nghe đúng cổng 10000 của Render
-ENV ASPNETCORE_URLS=http://+:10000
-
 COPY --from=build /app/out .
-
-# 🟢 SỬA LẠI THÀNH PORT 10000
-EXPOSE 10000
 
 ENTRYPOINT ["dotnet", "EC.Web.Host.dll"]
