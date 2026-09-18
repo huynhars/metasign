@@ -56,4 +56,10 @@
     <Folder Include="wwwroot\digitalSignatureImg\" />
     <Folder Include="wwwroot\tempConvert\" />
   </ItemGroup>
+	<PropertyGroup>
+  <TargetFramework>net6.0</TargetFramework>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>		<TargetFramework>net6.0</TargetFramework>
+		<InvariantGlobalization>true</InvariantGlobalization>
+	
 </Project>
