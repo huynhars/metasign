@@ -11,7 +11,7 @@
     "ng": "ng",
     "start": "node --openssl-legacy-provider node_modules/@angular/cli/bin/ng serve --host 0.0.0.0 --port 4200",
     "test": "ng test",
-    "build": "ng build --configuration production"
+    "build": "node --openssl-legacy-provider node_modules/@angular/cli/bin/ng build --configuration production"
   },
   "dependencies": {
     "@almothafar/angular-signature-pad": "^4.0.1",
@@ -62,9 +62,7 @@
     "@angular/compiler-cli": "^12.0.5",
     "@angularclass/hmr": "^2.1.3",
     "@types/jasmine": "~3.6.0",
-    "@types/lodash": "4.14.170",
-    "@types/lodash-es": "4.17.4",
-    "@types/minimatch": "3.0.5",
+    "@types/lodash-es": "^4.17.3",
     "@types/moment-timezone": "^0.5.30",
     "@types/node": "^13.13.4",
     "codelyzer": "^6.0.0",
@@ -82,11 +80,6 @@
     "tslint": "~6.1.0",
     "typescript": "4.2.4",
     "webpack-bundle-analyzer": "^3.7.0"
-  },
-  "resolutions": {
-    "@types/lodash": "4.14.170",
-    "@types/lodash-es": "4.17.4",
-    "@types/minimatch": "3.0.5"
   },
   "angular-cli": {}
 }

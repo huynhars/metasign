@@ -476,3 +476,121 @@ canvas {
   margin-top: 10px;
   cursor: pointer;
 }
+
+
+
+@media only screen and (max-width: 1024px) {
+    
+    ::ng-deep .cdk-overlay-pane:has([role="dialog"]) {
+        max-height: 90vh !important;
+        margin: 5vh auto !important;
+    }
+
+    ::ng-deep .signature_dialog .mat-dialog-container {
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+
+    .signature_tab {
+        height: auto;
+        max-height: 82vh; /* giảm từ 75vh cố định, chừa chỗ cho margin dialog */
+        width: 95%;
+        overflow-y: auto;
+    }
+
+    .card-body {
+        height: 52vh;
+    }
+
+    .signature_tab--upload {
+        height: 44vh;
+        margin-top: 20px;
+    }
+
+    .signature_tab--draw {
+        height: 42vh;
+        margin-top: 24px;
+    }
+
+    ::ng-deep .box-draw .signature-pad-canvas {
+        height: 38vh !important;
+    }
+
+    .signature_tab--type {
+        height: 42vh;
+        margin-top: 20px;
+    }
+
+    .card-header {
+        padding: 6px 14px;
+    }
+
+    .card-header_icon {
+        font-size: 32px;
+    }
+
+    .upload_signature i {
+        font-size: 32px;
+    }
+
+    .upload_signature img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #signature_img {
+        width: 190px;
+        height: 122px;
+    }
+}
+
+/* iPad dọc hẹp hơn (<= 834px) */
+@media only screen and (max-width: 834px) {
+    ::ng-deep .cdk-overlay-pane:has([role="dialog"]) {
+        max-height: 86vh !important;
+        margin: 7vh auto !important;
+    }
+
+    .signature_tab {
+        max-height: 78vh;
+    }
+
+    .card-body {
+        height: 44vh;
+    }
+
+    .signature_tab--upload,
+    .signature_tab--type {
+        height: 36vh;
+    }
+
+    .signature_tab--draw {
+        height: 34vh;
+    }
+
+    ::ng-deep .box-draw .signature-pad-canvas {
+        height: 30vh !important;
+    }
+
+    .card-header_icon {
+        font-size: 28px;
+    }
+
+    .upload_signature i {
+        font-size: 28px;
+    }
+
+    .upload_signature img {
+        width: 64px;
+        height: 64px;
+    }
+
+    #signature_img {
+        width: 160px;
+        height: 104px;
+    }
+
+    :host ::ng-deep .mat-dialog-actions {
+        padding: 8px 12px;
+    }
+}
