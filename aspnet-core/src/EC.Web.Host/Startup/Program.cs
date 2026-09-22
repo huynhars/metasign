@@ -18,7 +18,7 @@ namespace EC.Web.Host.Startup
             AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-            var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+           var port = Environment.GetEnvironmentVariable("PORT") ?? "44311";
 
             return Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "angular2-signaturepad": "^4.0.2"
+  },
+  "devDependencies": {
+    "ajv-formats": "^2.1.0"
   }
 }
