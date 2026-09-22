@@ -1,6 +1,28 @@
+/* =========================================================
+   1. NAVBAR CONTAINER & LOGO TÍCH HỢP
+   ========================================================= */
+
+.navbar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Định dạng thẻ Logo trong Navbar */
+.navbar-brand-logo {
+    display: flex !important;
+    align-items: center;
+    flex-shrink: 0 !important; /* Không cho logo bị co dẹp */
+    margin-right: 15px;
+}
+
 .mobile-toggle-btn {
     display: flex;
     align-items: center;
+    flex: 0 0 auto;
     padding: 0 8px;
 }
 
@@ -16,80 +38,78 @@
     color: var(--primary-color, #333);
 }
 
+
+/* =========================================================
+   2. DESKTOP MENU & ITEMS
+   ========================================================= */
+
 .list-menu {
     display: none;
-    padding-left: 10px;
-    flex-wrap: wrap;
     align-items: center;
-    list-style: none;
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: nowrap;
+    padding: 0;
     margin: 0;
-}
-
-
-@media only screen and (min-width: 1367px) {
-    .mobile-toggle-btn {
-        display: none !important;
-    }
-
-    .list-menu {
-        display: flex !important;
-    }
-
-    .sidebar-overlay,
-    .sidebar-drawer {
-        display: none !important;
-    }
-}
-
-.navbar-container {
-    position: relative;
+    list-style: none;
 }
 
 .nav-item {
     text-align: center;
+    white-space: nowrap;
+    flex: 0 1 auto;
 }
 
 .nav-link {
-    width: 100%;
+    display: inline-block;
+    width: auto;
     color: rgb(20, 20, 20);
     margin: 0;
+    padding: 6px 10px;
     text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
+
+.menu-item {
+    font-size: 1rem;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   3. ADMIN MENU & HOVER / ACTIVE STATES
+   ========================================================= */
 
 .nav-link-admin {
     width: 200px;
     text-align: left;
 }
 
-    .nav-link-admin:hover {
-        cursor: pointer;
-        background-color: #e6e4e4;
-        color: var(--primary-color);
-        font-weight: 400;
-    }
-
+.nav-link-admin:hover,
 .nav-item:hover {
     cursor: pointer;
     background-color: #e6e4e4;
     font-weight: 400;
 }
 
-    .nav-item:hover .menu-item {
-        color: var(--text-hover);
-    }
+.nav-item:hover .menu-item {
+    color: var(--text-hover);
+}
 
 .active {
     border-bottom: 3px solid var(--text-selected);
     font-weight: 400;
 }
 
-    .active .menu-item {
-        color: var(--text-selected);
-    }
+.active .menu-item {
+    color: var(--text-selected);
+}
 
 .menu-admin {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
     margin: 0;
 }
 
@@ -99,25 +119,129 @@
     border: none;
 }
 
-.menu-item {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-}
-
 .icon-down {
     font-size: 0.95rem;
     padding-left: 4px;
 }
 
+
+/* =========================================================
+   4. ANGULAR MATERIAL MENU OVERRIDES
+   ========================================================= */
+
 ::ng-deep .mat-menu-content {
     width: 200px !important;
-    max-height: 50vh;
+    max-height: 50vh !important;
 }
 
 ::ng-deep .mat-menu-panel {
     max-height: 50vh !important;
     overflow: hidden !important;
 }
+
+
+/* =========================================================
+   5. RESPONSIVE MEDIA QUERIES
+   ========================================================= */
+
+/* --- DESKTOP CƠ BẢN (>= 992px) --- */
+@media only screen and (min-width: 992px) {
+    .mobile-toggle-btn {
+        display: none !important;
+    }
+
+    .list-menu {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+    }
+
+    .sidebar-overlay,
+    .sidebar-drawer {
+        display: none !important;
+    }
+}
+
+/* --- LAPTOP / MÀN HÌNH 1200px - 1366px (MÀN HÌNH CỦA BẠN 1200x800) --- */
+@media only screen and (min-width: 992px) and (max-width: 1366px) {
+    /* Đảm bảo Logo giữ nguyên ở góc trái */
+    .navbar-brand-logo {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Co nhỏ bớt padding và font chữ của menu để nhường diện tích cho Logo */
+    .list-menu {
+        display: flex !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        gap: 2px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .nav-item {
+        flex: 0 1 auto !important;
+        min-width: 0 !important;
+    }
+
+    .nav-link {
+        padding: 4px 6px !important;
+    }
+
+    .menu-item {
+        font-size: 0.88rem !important;
+        white-space: nowrap !important;
+        margin: 0 !important;
+    }
+
+    .icon-down {
+        font-size: 0.78rem !important;
+        padding-left: 2px !important;
+    }
+}
+
+/* --- MÀN HÌNH LỚN (>= 1367px) --- */
+@media only screen and (min-width: 1367px) {
+    .navbar-brand-logo {
+        display: flex !important;
+    }
+
+    .nav-link {
+        padding: 6px 10px !important;
+    }
+
+    .menu-item {
+        font-size: 1rem !important;
+    }
+}
+
+/* --- MOBILE & TABLET (<= 991px) --- */
+@media only screen and (max-width: 991px) {
+    /* Ẩn logo ở navbar đi vì khi bấm Hamburger đã có logo ở Sidebar mở ra */
+    .navbar-brand-logo {
+        display: none !important;
+    }
+
+    .mobile-toggle-btn {
+        display: flex !important;
+    }
+
+    .list-menu {
+        display: none !important;
+    }
+
+    .sidebar-drawer {
+        display: flex;
+    }
+}
+
+
+/* =========================================================
+   6. SIDEBAR DRAWER (MOBILE / TABLET)
+   ========================================================= */
 
 .sidebar-overlay {
     position: fixed;
@@ -132,10 +256,10 @@
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-    .sidebar-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
 .sidebar-drawer {
     position: fixed;
@@ -153,9 +277,9 @@
     flex-direction: column;
 }
 
-    .sidebar-drawer.open {
-        transform: translateX(0);
-    }
+.sidebar-drawer.open {
+    transform: translateX(0);
+}
 
 .sidebar-header {
     display: flex;
@@ -166,10 +290,11 @@
     background-color: #fafafa;
 }
 
-.sidebar-logo {
+.sidebar-header .sidebar-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .btn-close-sidebar {
@@ -183,10 +308,10 @@
     transition: background-color 0.2s;
 }
 
-    .btn-close-sidebar:hover {
-        background-color: #eee;
-        color: #000;
-    }
+.btn-close-sidebar:hover {
+    background-color: #eee;
+    color: #000;
+}
 
 .sidebar-body {
     flex: 1;
@@ -194,7 +319,8 @@
     padding: 8px 0;
 }
 
-.sidebar-menu, .sidebar-submenu {
+.sidebar-menu,
+.sidebar-submenu {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -212,17 +338,10 @@
     transition: background-color 0.2s;
 }
 
-    .sidebar-link:hover, .sidebar-parent:hover {
-        background-color: #f2f2f2;
-        cursor: pointer;
-    }
-
-.sidebar-item-icon {
-    width: 24px;
-    font-size: 1.1rem;
-    margin-right: 10px;
-    text-align: center;
-    color: #555;
+.sidebar-link:hover,
+.sidebar-parent:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
 }
 
 .sidebar-icon-arrow {
@@ -230,9 +349,9 @@
     transition: transform 0.3s ease;
 }
 
-    .sidebar-icon-arrow.rotated {
-        transform: rotate(180deg);
-    }
+.sidebar-icon-arrow.rotated {
+    transform: rotate(180deg);
+}
 
 .sidebar-submenu {
     max-height: 0;
@@ -241,10 +360,10 @@
     transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
 }
 
-    .sidebar-submenu.expanded {
-        max-height: 1000px;
-        transition: max-height 0.35s ease-in-out;
-    }
+.sidebar-submenu.expanded {
+    max-height: 1000px;
+    transition: max-height 0.35s ease-in-out;
+}
 
 .sidebar-sublink {
     display: flex;
@@ -256,10 +375,10 @@
     transition: background-color 0.2s;
 }
 
-    .sidebar-sublink:hover {
-        background-color: #eaeaea;
-        color: var(--primary-color, #000);
-    }
+.sidebar-sublink:hover {
+    background-color: #eaeaea;
+    color: var(--primary-color, #000);
+}
 
 .active-sidebar {
     background-color: #e6e4e4;
@@ -267,6 +386,21 @@
     font-weight: 600;
 }
 
-    .active-sidebar .sidebar-item-icon {
-        color: var(--text-selected, #007bff);
+/* Màn hình máy tính lớn (>= 1367px): 
+   Ẩn logo bên trong Navbar đi để không bị lặp 2 logo với Header chính */
+@media only screen and (min-width: 1367px) {
+    .navbar-brand-logo {
+        display: none !important;
     }
+}
+
+/* Màn hình Laptop / Nhỏ hơn (992px - 1366px - ví dụ màn 1200x800):
+   Cho hiện logo bên trong Navbar để làm logo chính */
+@media only screen and (min-width: 992px) and (max-width: 1366px) {
+    .navbar-brand-logo {
+        display: flex !important;
+        align-items: center;
+        flex-shrink: 0 !important;
+        margin-right: 15px;
+    }
+}

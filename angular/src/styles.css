@@ -1,0 +1,54 @@
+/* ==========================================================================
+   FIX DỨT ĐIỂM: KHUNG HEADER CHỦ VÀ LOGO MÀN 13.6 INCH
+   ========================================================================== */
+
+/* 1. Ép toàn bộ khung Header thành hàng ngang chuẩn, phân bổ đều từ trái sang phải */
+.header, 
+header, 
+.header-wrapper, 
+.app-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    gap: 15px !important; /* Tạo khoảng cách an toàn tối thiểu giữa Logo - Menu - User */
+}
+
+/* 2. Ép thẻ chứa Logo ở góc trái luôn cố định, KHÔNG ĐƯỢC co rúm hay biến mất */
+sidebar-logo, 
+.logo-container, 
+.header-logo, 
+.brand-logo {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important; /* Bắt buộc Logo giữ nguyên kích thước */
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 3. Cho phép Navbar co giãn vừa vặn ở giữa */
+.navbar-container {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+/* 4. Màn 13.6 inch: Căn khoảng cách Menu đều đẹp, không bị dính chữ (díu) */
+@media only screen and (min-width: 992px) and (max-width: 1366px) {
+    .list-menu {
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 12px !important; /* Khoảng cách đẹp giữa từng mục Menu */
+    }
+
+    .nav-link {
+        padding: 6px 4px !important;
+    }
+
+    .menu-item {
+        font-size: 0.95rem !important; /* Cỡ chữ rõ ràng, dễ đọc */
+        letter-spacing: normal !important;
+    }
+}
