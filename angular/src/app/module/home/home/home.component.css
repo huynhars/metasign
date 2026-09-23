@@ -571,3 +571,21 @@
     }
 }
 
+.signature-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 60px;   /* chỉnh lại kích thước avatar cho gọn, tùy ý */
+}
+
+.signature-content {
+    flex: 1;
+}
