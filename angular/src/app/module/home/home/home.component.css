@@ -589,3 +589,16 @@
 .signature-content {
     flex: 1;
 }
+.status-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-item p {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.status-item .statistic {
+    margin-top: auto;
+}

@@ -15,7 +15,8 @@
 .navbar-brand-logo {
     display: flex !important;
     align-items: center;
-    flex-shrink: 0 !important; /* Không cho logo bị co dẹp */
+    flex-shrink: 0 !important;
+    /* Không cho logo bị co dẹp */
     margin-right: 15px;
 }
 
@@ -164,6 +165,7 @@
 
 /* --- LAPTOP / MÀN HÌNH 1200px - 1366px (MÀN HÌNH CỦA BẠN 1200x800) --- */
 @media only screen and (min-width: 992px) and (max-width: 1366px) {
+
     /* Đảm bảo Logo giữ nguyên ở góc trái */
     .navbar-brand-logo {
         display: flex !important;
@@ -220,6 +222,7 @@
 
 /* --- MOBILE & TABLET (<= 991px) --- */
 @media only screen and (max-width: 991px) {
+
     /* Ẩn logo ở navbar đi vì khi bấm Hamburger đã có logo ở Sidebar mở ra */
     .navbar-brand-logo {
         display: none !important;
@@ -397,10 +400,46 @@
 /* Màn hình Laptop / Nhỏ hơn (992px - 1366px - ví dụ màn 1200x800):
    Cho hiện logo bên trong Navbar để làm logo chính */
 @media only screen and (min-width: 992px) and (max-width: 1366px) {
-    .navbar-brand-logo {
-        display: flex !important;
-        align-items: center;
-        flex-shrink: 0 !important;
-        margin-right: 15px;
+    @media only screen and (min-width: 992px) and (max-width: 1366px) {
+
+        /* Đảm bảo Logo giữ nguyên ở góc trái */
+        .navbar-brand-logo {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            flex-shrink: 0 !important;
+        }
+
+        
+        .list-menu {
+            display: flex !important;
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+            gap: 8px !important;
+            /* tăng từ 2px lên 8px */
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .nav-item {
+            flex: 0 1 auto !important;
+            min-width: 0 !important;
+        }
+
+        .nav-link {
+            padding: 4px 12px !important;
+            /* tăng từ 6px lên 12px */
+        }
+
+        .menu-item {
+            font-size: 0.88rem !important;
+            white-space: nowrap !important;
+            margin: 0 !important;
+        }
+
+        .icon-down {
+            font-size: 0.78rem !important;
+            padding-left: 2px !important;
+        }
     }
 }
