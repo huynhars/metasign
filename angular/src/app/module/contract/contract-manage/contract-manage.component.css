@@ -52,6 +52,7 @@
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     margin: 0;
+    margin-right: 24px !important;
 }
 
 /* Nhóm chứa search */
@@ -63,6 +64,7 @@
     align-items: center;
 
     flex-shrink: 0;
+    gap: 16px !important;
 }
 
 /* Ô search */
@@ -74,11 +76,6 @@
 
 .label-search {
     font-weight: 400;
-}
-
-.icon-search {
-    padding-right: 8px;
-    vertical-align: middle;
 }
 
 .filter_select {
@@ -572,7 +569,7 @@
     }
 }
 
-header-content {
+.header-content {
     gap: 24px !important; /* Tăng khoảng trống giữa các phần tử ở header */
 }
 
@@ -599,4 +596,30 @@ header-content {
         min-width: 220px !important;
         margin-right: 12px !important; /* Đẩy dịch ra xa */
     }
+}
+
+/* ===== Canh icon search nằm đúng giữa ô input theo chiều dọc, mọi kích thước ===== */
+.search-contract ::ng-deep .mat-form-field-prefix {
+    top: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    align-self: center !important;
+    height: 100%;
+    margin-right: 4px;
+}
+
+.search-contract ::ng-deep .mat-form-field-flex {
+    align-items: center !important;
+}
+
+.search-contract ::ng-deep .mat-form-field-infix {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.icon-search {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 15px;
 }

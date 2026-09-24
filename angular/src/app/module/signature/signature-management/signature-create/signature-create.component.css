@@ -1,596 +1,599 @@
-.dialog {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.signature {
+    transform: translateX(8px);
 }
 
-#signature_img {
-  width: 240px;
-  height: 155px;
+.wrapper-statistic {
+    height: 20%;
+    overflow: hidden;
 }
 
-.dialog_btn {
-  display: flex;
-  justify-content: space-between;
+.statistic-item {
+    height: 20%;
 }
 
-.card-body {
-  height: 60vh;
+.home_upload {
+    border: 2px dashed rgb(52, 85, 151);
+    background-color: rgb(237, 242, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.signature_tab {
-  height: 75vh;
-  overflow: hidden;
-  width: 90%;
-  margin: 0 auto;
-  max-height: 75vh;
+.home_upload--success {
+    width: 80%;
+    border: 2px dashed rgb(52, 85, 151);
+    background-color: rgb(237, 242, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.signature_tab--upload {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  width: 100%;
-  height: 54vh;
-  border: 2px dashed rgb(204, 204, 204);
-  background-color: #f9f9f9;
+.upload_input {
+    text-align: center;
 }
 
-::ng-deep .signature-pad-canvas {
-  width: 100% !important;
-  background-color: white !important;
-  border: 2px dashed rgb(204, 204, 204);
+.img-upload {
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.upload_signature {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+.img__upload--item {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
-.upload_signature--success {
-  display: flex;
-  gap: 0 20px;
+.img-item {
+    max-height: 89%;
 }
 
-.upload_label {
-  width: 140px;
-  margin: 12px auto auto auto;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: 0.66px;
-  text-align: center;
-  background-color: rgb(249, 249, 249);
-  border: 1px solid rgb(204, 204, 204);
-  color: rgb(30, 30, 30);
-  font-size: 12px;
-  padding: 4px 14px;
+#fileID {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
-#upload {
-  display: none;
+.mat-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.upload_label:hover {
-  background-color: rgb(233, 233, 233);
-  transition: background-color 0.4s;
+.box_file {
+    display: none;
 }
 
-.upload_signature i {
-  font-size: 40px;
+.fa-file-upload {
+    font-size: 50px;
+    color: rgb(157, 164, 180);
 }
 
-.upload_signature img {
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
+.description_file {
+    color: rgb(173, 173, 173);
 }
 
-.upload_signature button {
-  margin-top: 20px;
+.mat-stepper-horizontal {
+    margin-top: 8px;
 }
 
-.tab_draw--before img {
-  width: 100%;
+.mat-mdc-form-field {
+    margin-top: 16px;
 }
 
-.select_signature {
-  margin-top: 40px;
-  width: 90%;
+.contract-input {
+    width: 530px;
+    max-width: 100%;
 }
 
-.select_signature--box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.image-upload > input {
+    display: none;
 }
 
-.select_signature--box img {
-  width: 100px;
-  height: 100px;
+.fileName {
+    font-size: 20px;
+    margin-top: 10px;
 }
 
-.signature_tab--select {
-  margin-top: 20px;
+.card {
+    border-radius: 4px;
+    width: 600px;
+    max-width: 100%;
+    background-color: #ffffff;
+    padding: 16px 30px 30px;
 }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 20px;
+.upload {
+    height: 53vh;
 }
 
-.card-header_icon {
-  font-size: 40px;
+.card h3 {
+    font-size: 22px;
+    font-weight: 600;
 }
 
-.signature_tab--draw {
-  margin-top: 40px;
-  height: 53vh;
-  position: relative;
+.drop_box {
+    height: 51vh;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px dashed #e1e5ed;
 }
 
-.tab_draw--icon-trash {
-  color: #7e8286;
-  position: absolute;
-  right: 10px;
-  top: 6px;
-  font-size: 20px;
-  z-index: 1;
-}
-
-.tab_draw--icon-trash:hover {
-  cursor: pointer;
-  color: var(--primary-color);
-}
-
-input[type="checkbox"] {
-  accent-color: var(--primary-color) !important;
-  width: 20px !important;
-  height: 20px !important;
-  transform: translateY(25%);
-}
-
-:host ::ng-deep .mat-dialog-actions {
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-  margin-bottom: 0;
-  padding: 8px 20px;
-}
-
-::ng-deep .dialog {
-  justify-content: space-between;
-}
-
-::ng-deep .signature_dialog .mat-dialog-container {
-  padding: 0 !important;
-  overflow: hidden !important;
-}
-
-::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
-  background-color: var(--primary-color) !important;
-}
-
-::ng-deep .box-draw .signature-pad-canvas {
-  height: 49vh !important;
-}
-
-.canvas-pad {
-}
-
-#signature-pad {
-  position: relative;
-}
-
-#signature-pad canvas {
-  border: 1px solid #000;
-}
+    .drop_box h4 {
+        font-size: 16px;
+        font-weight: 400;
+        color: #2e2e2e;
+    }
 
-#signature-pad input[type="text"] {
-  position: absolute;
-  border: 1px solid #000;
-  padding: 4px;
-  background-color: #fff;
-}
-
-input[type="text"]:hover {
-  cursor: pointer;
-}
-
-.btn-drag {
-  width: 93px;
-  height: 36px;
-  position: absolute;
-  background-color: rgb(244, 203, 63, 0.85);
-  border: 3px solid #ccc;
-  padding: 5px 7px !important;
-}
-
-.list-tools {
-  position: absolute;
-  top: -35px;
-  left: 104px;
-  height: 31px;
-  width: 268px;
-  padding: 4px;
-  border-radius: 3px;
-}
-
-.wrapper-select-font-family {
-  /* border-right: 2px solid #c2c2c2; */
-  padding: 0 4px;
-}
-
-.select-item {
-  height: 23px;
-  padding: 2px;
-  border: none;
-  border-radius: 3px;
-}
+    .drop_box p {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        color: #7c7c7c;
+    }
 
-.select-font-size {
-  transform: translateY(-10px);
-}
-
-.select-item:hover,
-.select-color:hover {
-  cursor: pointer;
-  background-color: #f2f2f2;
-  padding: 2px;
-}
+    .drop_box svg {
+        max-width: 100%;
+        height: auto;
+    }
 
-.select-color {
-  width: 60px;
-  position: absolute;
-  right: -60px;
-  padding: 10px 15px 0px 15px;
+.btn {
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
 }
 
-.text-a {
-  position: absolute;
-  top: -2px;
-  left: 31px;
-  font-size: 14px;
+.signature-title {
+    height: 20%;
 }
 
-.toolbar {
-  position: absolute;
-  top: -1px;
-  right: -10px;
-  width: 3px;
-  height: 21px;
-  background-color: #c2c2c2;
-  z-index: 1;
+.form input {
+    margin: 10px 0;
+    width: 100%;
+    background-color: #e2e2e2;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    border-radius: 4px;
 }
 
-.wrapper-input,
-.wrapper-button,
-.overlay-button {
-  position: absolute;
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 60px;
 }
 
-canvas {
-  z-index: 1;
-  border: 1px solid #d1cbcb !important;
+.signature-default .card {
+    height: 15vh;
 }
 
-.icon-x {
-  position: absolute !important;
-  top: -18px;
-  right: -16px;
-  cursor: pointer;
-  z-index: 1;
-  padding: 8px;
-  font-size: 15px;
-  display: none;
+.small-box {
+    height: 13vh;
 }
 
-.list-color {
-  position: absolute;
-  top: -35px;
-  right: 0;
-  height: 31px;
-}
+    .small-box p {
+        margin-bottom: 10px;
+    }
 
-.btn-color-item {
-  width: 18px;
-  height: 18px;
-  padding: 3px;
-  border-radius: 100%;
-  border: none;
-  margin-top: 4.5px;
+.statistic {
+    font-size: 50px;
+    line-height: 1;
 }
 
-.btn-color-selected {
-  width: 25px;
-  height: 25px;
+.wrapper-img-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    aspect-ratio: 1 / 1; 
+    align-self: center; 
+    overflow: hidden;
+    flex-shrink: 0;
+    padding: 2px; 
+    box-sizing: border-box;
 }
 
-.icon-check {
-  transform: translateY(1px);
-  font-size: 15px;
-  color: #fff;
-}
+    .wrapper-img-status img {
+        width: 100%;
+    }
 
-:host ::ng-deep .mat-select-panel {
-  margin-top: 0;
-}
+    
+    .wrapper-img-status svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
 
-:host ::ng-deep #selectType .mat-form-field-flex > .mat-form-field-infix {
-  padding: 8px 0 !important;
+.img-status {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-:host ::ng-deep .mat-select-panel {
-  transform: translateY(36px) !important;
+.signature {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.text_type {
-  border-radius: 7px;
-  width: 100px;
-  height: 36px;
-  background-color: rgb(244, 203, 63, 0.85);
-  border: 3px solid #d1cbcb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  z-index: 1;
+.signature-content {
+    height: 13vh;
+    border-radius: 5px;
+    flex: 1;
 }
 
-.signature_container {
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .signature-content:hover {
+        background-color: #e9e9e9;
+    }
 
-.signature_type--delete {
-  cursor: pointer;
-  color: white;
-  padding: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-size: 12px;
-  position: absolute;
-  background-color: #026351;
-  width: 10px;
-  height: 10px;
-  width: 10px;
-  right: -17px;
-  top: -17px;
+.small-box:hover {
+    background-color: #f5f5f5 !important;
 }
 
-.signature_type--delete:hover {
-  transition: 0.3s;
-  background-color: #e74c3c;
+.btn-upload {
+    z-index: 999;
 }
 
-.input-drag {
-  outline: 2px solid rgb(235, 200, 4);
-  border: 1px solid #d1cbcb !important;
-  resize: none;
-  border-radius: 7px;
+::ng-deep .mat-form-field-infix {
+    display: flex !important;
 }
 
-.input-drag::-webkit-scrollbar {
-  display: none;
+.big-signature {
+    position: absolute;
+    width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.input-drag:focus-within {
-  background: none !important;
+::ng-deep .menu-big-signature.mat-menu-panel {
+    width: 350px !important;
+    height: 300px !important;
+    right: 0 !important;
+    margin-top: 0 !important;
+    margin-left: auto !important;
+    left: 54%;
 }
 
-.add-outline {
-  border: 2px solid rgb(235, 200, 4) !important;
-  border-radius: 4px;
+::ng-deep .menu-big-signature.mat-menu-content {
+    height: 300px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.overlay-input {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  padding: 4px 0 4px 4px;
-  border-radius: 7px;
-  background-color: rgb(255, 214, 91, 0.85);
-  border: 3px solid #d1cbcb;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+::ng-deep .cdk-overlay-pane:has(> .menu-big-signature:first-child) {
+    pointer-events: none !important;
 }
 
-.overlay-input:hover {
-  cursor: pointer;
+.signature-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
 }
 
-.wrapper-value-input {
-  background-color: rgb(255, 214, 91, 0.3);
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
+/* ===== Canh đều số liệu Need to sign / Waiting for others / Expiring soon / Completed ===== */
+.status-item {
+    display: grid;
+    grid-template-rows: minmax(2.6em, auto) auto;
 }
 
-::ng-deep #tab_signature .mat-tab-body-content {
-  overflow: hidden !important;
+.status-item p {
+    margin: 0;
+    align-self: end;
 }
 
-/* tab-type */
-.signature_tab--type {
-  position: relative;
-  margin-top: 30px;
-  width: 100%;
-  height: 54vh;
-  border: 2px solid rgb(238 238 238);
-  background-color: #f9f9f9;
+.status-item .statistic {
+    align-self: start;
 }
 
-.list-color--tab-type {
-  position: absolute;
-  top: 10px;
-  right: 22px;
+@media (max-width: 1920px) {
+    .img-upload {
+        height: 75%;
+    }
 }
 
-.input-signature {
-  width: 93%;
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border: none;
-  border-bottom: 1px solid var(--primary-color);
-  outline: none;
+@media (max-width: 1706.67px) {
+    .img-upload {
+        height: 75%;
+    }
 }
 
-.select-font-family {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  background-color: #f9f9f9;
+@media (max-width: 1536px) {
+    .img-upload {
+        height: 73%;
+    }
 }
 
-:host ::ng-deep .mat-select-panel {
-  transform: translateY(24px) !important;
+@media only screen and (min-width: 992px) and (max-width: 1269.99px) {
+    .img-upload {
+        height: 68%;
+    }
 }
 
-:host ::ng-deep #selectFontFamily .mat-form-field-underline {
-  display: none;
-}
+@media only screen and (max-width: 1440px) {
+    .statistic {
+        font-size: 40px;
+    }
 
-:host ::ng-deep .mat-form-field-wrapper {
-  transform: translateY(-12px);
-}
+    .status-item p {
+        margin-bottom: 0 !important;
+        white-space: nowrap;
+        font-size: 0.92rem;
+    }
 
-.upload_signature--note{
-  margin: 0;
-  padding: 0;
-  margin-top: 10px;
-  cursor: pointer;
+    .wrapper-img-status {
+        width: 56px;
+    }
 }
-
-
 
 @media only screen and (max-width: 1024px) {
-    
-    ::ng-deep .cdk-overlay-pane:has([role="dialog"]) {
-        max-height: 90vh !important;
-        margin: 5vh auto !important;
-    }
-
-    ::ng-deep .signature_dialog .mat-dialog-container {
-        max-height: 90vh !important;
-        overflow-y: auto !important;
-    }
-
-    .signature_tab {
+    .wrapper {
         height: auto;
-        max-height: 82vh; /* giảm từ 75vh cố định, chừa chỗ cho margin dialog */
-        width: 95%;
-        overflow-y: auto;
     }
 
-    .card-body {
-        height: 52vh;
+    .wrapper-statistic {
+        height: auto;
     }
 
-    .signature_tab--upload {
-        height: 44vh;
-        margin-top: 20px;
+    .statistic-item {
+        height: auto;
+        margin-bottom: 12px;
+        display: flex; 
     }
 
-    .signature_tab--draw {
-        height: 42vh;
-        margin-top: 24px;
+    .small-box {
+        height: 100%; 
+        min-height: 110px; 
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    ::ng-deep .box-draw .signature-pad-canvas {
-        height: 38vh !important;
-    }
-
-    .signature_tab--type {
-        height: 42vh;
-        margin-top: 20px;
-    }
-
-    .card-header {
-        padding: 6px 14px;
-    }
-
-    .card-header_icon {
+    .statistic {
         font-size: 32px;
     }
 
-    .upload_signature i {
-        font-size: 32px;
+    .wrapper-img-status {
+        width: 50px;
+        margin: 6px 20px 6px 14px;
     }
 
-    .upload_signature img {
-        width: 80px;
-        height: 80px;
+    
+    .wrapper-status-item {
+        flex-wrap: nowrap !important;
     }
 
-    #signature_img {
-        width: 190px;
-        height: 122px;
+    .status-item {
+        min-width: 0; 
+    }
+
+    .signature-default .card {
+        height: 130px; 
+        padding: 12px 16px 20px;
+    }
+
+    .signature-default .col-4 {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+        height: 100%;
+    }
+
+    .signature-default .col-2.avatar {
+        width: 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+        height: 100%;
+    }
+
+    .signature-default .col-5.signature-content {
+        width: 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+        height: 100%;
+        min-height: 0; /* bỏ min-height: 90px cũ, không cần nữa vì đã có height cố định */
+    }
+
+    /* Chặn cứng ảnh preview chữ ký, không phụ thuộc chuỗi % kế thừa nữa */
+    .img-upload {
+        height: 100% !important;
+        max-height: 80px;
+    }
+
+    .img__upload--item {
+        max-width: 100%;
+        max-height: 80px;
+        object-fit: contain;
+    }
+
+    .drop_box {
+        height: auto;
+        min-height: 320px;
+        padding: 20px;
+    }
+
+        .drop_box svg {
+            width: 120px;
+            height: 120px;
+        }
+
+        .drop_box h4 {
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .drop_box p {
+            font-size: 13px;
+            text-align: center;
+        }
+
+    .contract-input {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
     }
 }
 
-/* iPad dọc hẹp hơn (<= 834px) */
-@media only screen and (max-width: 834px) {
-    ::ng-deep .cdk-overlay-pane:has([role="dialog"]) {
-        max-height: 86vh !important;
-        margin: 7vh auto !important;
+/* ===== TABLET NHỎ / MOBILE NGANG (dưới 768px) ===== */
+@media only screen and (max-width: 767px) {
+    .statistic-item {
+        margin-bottom: 10px;
+        display: flex;
     }
 
-    .signature_tab {
-        max-height: 78vh;
+    .small-box {
+        height: 100%;
+        min-height: 100px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    .card-body {
-        height: 44vh;
+    .statistic {
+        font-size: 26px;
     }
 
-    .signature_tab--upload,
-    .signature_tab--type {
-        height: 36vh;
+    .wrapper-status-item {
+        flex-wrap: nowrap;
     }
 
-    .signature_tab--draw {
-        height: 34vh;
+    .status-item {
+        margin-left: 8px !important;
+        margin-right: 8px !important;
     }
 
-    ::ng-deep .box-draw .signature-pad-canvas {
-        height: 30vh !important;
+    .wrapper-img-status {
+        width: 40px;
+        margin: 4px 8px 4px 6px;
     }
 
-    .card-header_icon {
-        font-size: 28px;
+    .signature-default .col-2.avatar {
+        width: 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
     }
 
-    .upload_signature i {
-        font-size: 28px;
+    .signature-default .col-5.signature-content {
+        width: 70%;
+        flex: 0 0 70%;
+        max-width: 70%;
     }
 
-    .upload_signature img {
-        width: 64px;
-        height: 64px;
+    .drop_box svg {
+        width: 90px;
+        height: 90px;
     }
 
-    #signature_img {
-        width: 160px;
-        height: 104px;
+    .drop_box h4 {
+        font-size: 14px;
     }
 
-    :host ::ng-deep .mat-dialog-actions {
-        padding: 8px 12px;
+    .drop_box p {
+        font-size: 12px;
+    }
+
+    .signature-default .card {
+        height: 100px;
+    }
+
+    .img-upload {
+        max-height: 60px;
+    }
+
+    .img__upload--item {
+        max-height: 60px;
+    }
+}
+
+@media only screen and (max-height: 1024px) {
+    .wrapper {
+        height: 90vh;
+    }
+
+    .upload {
+        height: 53vh;
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-height: 912px) {
+    .wrapper {
+        height: 88vh;
+    }
+
+    .upload {
+        height: 50vh;
+        overflow: hidden;
+    }
+
+    .drop_box {
+        height: 48vh;
+    }
+
+        .drop_box header,
+        .drop_box p,
+        .drop_box input,
+        .drop_box button {
+            transform: translateY(-10%);
+        }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .content {
+        padding: 0 8px;
+    }
+
+    .wrapper-statistic {
+        margin-left: -6px;
+        margin-right: -6px;
+    }
+
+    .statistic-item {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .small-box {
+        min-height: 96px;
+    }
+
+    .wrapper-status-item {
+        align-items: center;
+    }
+
+    .status-item p {
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+    }
+
+    .signature-default .card {
+        margin-bottom: 12px;
+    }
+
+    .upload,
+    .drop_box {
+        height: auto;
+        min-height: 0;
+    }
+
+    .drop_box {
+        min-height: 280px;
     }
 }

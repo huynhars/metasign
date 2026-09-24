@@ -1,5 +1,7 @@
 .home {
     height: 76vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .container {
@@ -303,6 +305,8 @@
     .home {
         height: auto;
         min-height: 76vh;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
     /* Input hợp đồng: bỏ width cứng 400px, co theo khung */
