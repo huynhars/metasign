@@ -598,28 +598,11 @@
     }
 }
 
-/* ===== Canh icon search nằm đúng giữa ô input theo chiều dọc, mọi kích thước ===== */
-.search-contract ::ng-deep .mat-form-field-prefix {
-    top: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    align-self: center !important;
-    height: 100%;
-    margin-right: 4px;
-}
-
-.search-contract ::ng-deep .mat-form-field-flex {
-    align-items: center !important;
-}
-
-.search-contract ::ng-deep .mat-form-field-infix {
-    display: flex !important;
-    align-items: center !important;
-}
-
-.icon-search {
-    display: flex;
-    align-items: center;
-    line-height: 1;
-    font-size: 15px;
+/* ===== Canh icon search nằm giữa ô input — cách an toàn, chỉ dịch icon,
+   KHÔNG đụng vào flex/padding của mat-form-field-flex và mat-form-field-infix
+   (2 lớp đó Material dùng để tự tính khung viền outline, đụng vào sẽ vỡ layout) ===== */
+.search-contract ::ng-deep .icon-search {
+    display: inline-block;
+    transform: translateY(-5px);
+    margin-right: 8px;
 }
